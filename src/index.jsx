@@ -1,12 +1,9 @@
 import { createRoot } from "react-dom";
+import { MainView } from "./components/main-view/main-view";
 import "./index.scss";
 
 const SelectFilms = () => {
-  return (
-    <div className="title-teal">
-      <div>Welcome!</div>
-    </div>
-  );
+  return <MainView />;
 };
 
 const container = document.querySelector("#root");
