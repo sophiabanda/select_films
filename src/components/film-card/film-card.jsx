@@ -9,3 +9,6 @@ export const FilmCard = ({ film, onFilmClick }) => {
     </div>
   );
 };
+
+//onClick event listener cannot
+//be used in components, only in regular divs.

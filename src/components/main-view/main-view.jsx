@@ -42,6 +42,7 @@ export const MainView = () => {
     },
   ]);
   const [selectedFilm, setSelectedFilm] = useState(null);
+  //state variable
 
   if (selectedFilm) {
     return (
