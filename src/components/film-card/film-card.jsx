@@ -5,7 +5,8 @@ export const FilmCard = ({ film, onFilmClick }) => {
         onFilmClick(film);
       }}
     >
-      {film.title}
+      <img src={film.image}></img>
+      <h1>{film.title}</h1>
     </div>
   );
 };

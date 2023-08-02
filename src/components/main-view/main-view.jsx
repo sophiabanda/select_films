@@ -18,12 +18,13 @@ export const MainView = () => {
             director: item.Director,
             title: item.Title,
             genre: item.Genre,
-            image: item.filmPosterImage,
+            image: item.filmPosterImg,
             summary: item.Summary,
             favorite: item.Favorite,
           };
         });
         setFilms(filmsFromAPI);
+        console.log(data);
       });
   }, []);
 
