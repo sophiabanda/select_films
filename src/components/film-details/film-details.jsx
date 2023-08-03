@@ -2,7 +2,7 @@ export const FilmDetails = ({ film, onBackClick }) => {
   return (
     <div>
       <div>
-        <img src={film.image} />
+        <img className="film-poster" src={film.image} />
       </div>
       <div>
         <span>Title: </span>

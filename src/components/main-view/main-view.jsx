@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { FilmCard } from "../film-card/film-card";
 import { FilmDetails } from "../film-details/film-details";
+import { LogInView } from "../login-view/login-view";
 
 export const MainView = () => {
+  //state variables:
   const [films, setFilms] = useState([]);
   const [selectedFilm, setSelectedFilm] = useState(null);
-  //state variable
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetch(`https://sophia-films.herokuapp.com/films`)
@@ -28,6 +30,10 @@ export const MainView = () => {
       });
   }, []);
 
+  if (!user) {
+    return <LogInView />;
+  }
+
   if (selectedFilm) {
     return (
       <FilmDetails
@@ -38,6 +44,7 @@ export const MainView = () => {
       />
     );
   }
+
   if (films.length === 0) {
     return <div>The list is empty!</div>;
   }
