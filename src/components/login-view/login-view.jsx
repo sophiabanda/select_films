@@ -3,12 +3,13 @@ import { useState } from "react";
 
 export const LogInView = () => {
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-      username: username,
-      password: password,
+      Name: username,
+      Password: password,
     };
 
     fetch("https://sophia-films.herokuapp.com/login", {
@@ -24,6 +25,7 @@ export const LogInView = () => {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         ></input>
       </label>
       <label>
@@ -31,7 +33,8 @@ export const LogInView = () => {
         <input
           type="password"
           value={password}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
+          required
         ></input>
       </label>
       <button type="submit">Submit</button>
