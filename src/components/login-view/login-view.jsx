@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export const LogInView = () => {
+export const LogInView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
@@ -15,6 +15,15 @@ export const LogInView = () => {
     fetch("https://sophia-films.herokuapp.com/login", {
       method: "POST",
       body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        onLoggedIn(username);
+      } else {
+        alert("Login failed.");
+      }
     });
   };
   return (

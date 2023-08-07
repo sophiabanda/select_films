@@ -15,11 +15,13 @@ export const MainView = () => {
       .then((response) => response.json())
       .then((data) => {
         const filmsFromAPI = data.map((item) => {
+          const genre = item.Genres.map((genre) => genre.Type);
+          console.log(genre);
           return {
             id: item._id,
             director: item.Director,
             title: item.Title,
-            genre: item.Genre,
+            genre: genre,
             image: item.filmPosterImg,
             summary: item.Summary,
             favorite: item.Favorite,
@@ -31,7 +33,7 @@ export const MainView = () => {
   }, []);
 
   if (!user) {
-    return <LogInView />;
+    return <LogInView onLoggedIn={(user) => setUser(user)} />;
   }
 
   if (selectedFilm) {
@@ -51,6 +53,13 @@ export const MainView = () => {
 
   return (
     <div>
+      <button
+        onClick={() => {
+          setUser(null);
+        }}
+      >
+        Logout
+      </button>
       {films.map((film) => {
         return (
           <FilmCard
