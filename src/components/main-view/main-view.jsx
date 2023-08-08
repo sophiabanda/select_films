@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FilmCard } from "../film-card/film-card";
 import { FilmDetails } from "../film-details/film-details";
 import { LogInView } from "../login-view/login-view";
+import { SignUpView } from "../sign-up-view/sign-up-view";
 
 export const MainView = () => {
   //state variables:
@@ -41,13 +42,17 @@ export const MainView = () => {
 
   if (!user) {
     return (
-      <LogInView
-        onLoggedIn={(user, token) => {
-          setUser(user);
-          setToken(token);
-          localStorage.clear();
-        }}
-      />
+      <>
+        <LogInView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+            localStorage.clear();
+          }}
+        />
+        or
+        <SignUpView />
+      </>
     );
   }
 
