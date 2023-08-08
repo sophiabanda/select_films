@@ -14,15 +14,17 @@ export const LogInView = ({ onLoggedIn }) => {
 
     fetch("https://sophia-films.herokuapp.com/login", {
       method: "POST",
-      body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
         if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
         } else {
           alert("No such user.");

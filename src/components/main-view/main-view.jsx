@@ -6,10 +6,12 @@ import { LogInView } from "../login-view/login-view";
 
 export const MainView = () => {
   //state variables:
-  const [films, setFilms] = useState([]);
-  const [selectedFilm, setSelectedFilm] = useState(null);
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [films, setFilms] = useState([]);
+  const [selectedFilm, setSelectedFilm] = useState(null);
 
   useEffect(() => {
     fetch(`https://sophia-films.herokuapp.com/films`, {
@@ -30,7 +32,6 @@ export const MainView = () => {
           };
         });
         setFilms(filmsFromAPI);
-        console.log(data);
       });
   }, [token]);
 
@@ -44,6 +45,7 @@ export const MainView = () => {
         onLoggedIn={(user, token) => {
           setUser(user);
           setToken(token);
+          localStorage.clear();
         }}
       />
     );
