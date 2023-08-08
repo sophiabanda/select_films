@@ -12,7 +12,9 @@ export const MainView = () => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    fetch(`https://sophia-films.herokuapp.com/films`)
+    fetch(`https://sophia-films.herokuapp.com/films`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => response.json())
       .then((data) => {
         const filmsFromAPI = data.map((item) => {
@@ -67,6 +69,7 @@ export const MainView = () => {
       <button
         onClick={() => {
           setUser(null);
+          setToken(null);
         }}
       >
         Logout
