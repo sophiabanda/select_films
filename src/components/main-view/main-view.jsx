@@ -8,8 +8,8 @@ export const MainView = () => {
   //state variables:
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
   const [selectedFilm, setSelectedFilm] = useState(null);
 
