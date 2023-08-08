@@ -9,6 +9,7 @@ export const MainView = () => {
   const [films, setFilms] = useState([]);
   const [selectedFilm, setSelectedFilm] = useState(null);
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     fetch(`https://sophia-films.herokuapp.com/films`)
@@ -16,7 +17,6 @@ export const MainView = () => {
       .then((data) => {
         const filmsFromAPI = data.map((item) => {
           const genre = item.Genres.map((genre) => genre.Type);
-          console.log(genre);
           return {
             id: item._id,
             director: item.Director,
@@ -30,10 +30,21 @@ export const MainView = () => {
         setFilms(filmsFromAPI);
         console.log(data);
       });
-  }, []);
+  }, [token]);
+
+  if (!token) {
+    return;
+  }
 
   if (!user) {
-    return <LogInView onLoggedIn={(user) => setUser(user)} />;
+    return (
+      <LogInView
+        onLoggedIn={(user, token) => {
+          setUser(user);
+          setToken(token);
+        }}
+      />
+    );
   }
 
   if (selectedFilm) {

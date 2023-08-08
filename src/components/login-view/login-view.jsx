@@ -18,13 +18,19 @@ export const LogInView = ({ onLoggedIn }) => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((response) => {
-      if (response.ok) {
-        onLoggedIn(username);
-      } else {
-        alert("Login failed.");
-      }
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Login response: ", data);
+        if (data.user) {
+          onLoggedIn(data.user, data.token);
+        } else {
+          alert("No such user.");
+        }
+      })
+      .catch((e) => {
+        alerr("Something went wrong.");
+      });
   };
   return (
     <form onSubmit={handleSubmit}>

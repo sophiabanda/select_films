@@ -2,25 +2,35 @@ export const FilmDetails = ({ film, onBackClick }) => {
   return (
     <div>
       <div>
-        <img className="film-poster" src={film.image} />
+        <img
+          alt="Original film poster for film"
+          className="film-poster"
+          src={film.image}
+        />
       </div>
       <div>
-        <span>Title: </span>
+        <span className="text">Title: </span>
         <span>{film.title}</span>
       </div>
       <div>
-        <span>Director: </span>
-        <span>{film.director.Name}</span>
+        <span className="text">Director: </span>
+        <span>{film.director?.Name}</span>
       </div>
       <div>
-        <span>Genres: </span>
-        <span>{film.genre}</span>
+        <span className="text">Genres: </span>
+        <span>
+          {film.genre
+            .map((genre) => genre.charAt(0).toUpperCase() + genre.slice(1))
+            .join(", ")}
+        </span>
       </div>
       <div>
-        <span>Summary: </span>
+        <span className="text">Summary: </span>
         <span>{film.summary}</span>
       </div>
       <button onClick={onBackClick}>Back</button>
     </div>
   );
 };
+
+//safe operator '?'
