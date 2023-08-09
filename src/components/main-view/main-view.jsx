@@ -14,6 +14,9 @@ export const MainView = () => {
   const [selectedFilm, setSelectedFilm] = useState(null);
 
   useEffect(() => {
+    if (!token) {
+      return;
+    }
     fetch(`https://sophia-films.herokuapp.com/films`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -31,13 +34,12 @@ export const MainView = () => {
             favorite: item.Favorite,
           };
         });
-        setFilms(filmsFromAPI);
+        const sortedFilms = filmsFromAPI.sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
+        setFilms(sortedFilms);
       });
   }, [token]);
-
-  if (!token) {
-    return;
-  }
 
   if (!user) {
     return (
