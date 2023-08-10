@@ -5,6 +5,7 @@ import { FilmDetails } from "../film-details/film-details";
 import { LogInView } from "../login-view/login-view";
 import { SignUpView } from "../sign-up-view/sign-up-view";
 import { Row, Col } from "react-bootstrap";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./main-view.scss";
 
 export const MainView = () => {
