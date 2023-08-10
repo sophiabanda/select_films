@@ -1,3 +1,5 @@
+import "./film-details.scss";
+
 export const FilmDetails = ({ film, onBackClick }) => {
   return (
     <div>
