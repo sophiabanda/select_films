@@ -4,6 +4,7 @@ import { FilmCard } from "../film-card/film-card";
 import { FilmDetails } from "../film-details/film-details";
 import { LogInView } from "../login-view/login-view";
 import { SignUpView } from "../sign-up-view/sign-up-view";
+import "./main-view.scss";
 
 export const MainView = () => {
   //state variables:

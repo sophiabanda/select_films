@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "/login-view.scss";
 
 export const LogInView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
