@@ -1,7 +1,15 @@
-.text {
-  color: gray;
-}
-
-$primary: teal;
+$primary: #eb455f;
+$main-blue: #2b3467;
+$main-red: #eb455f;
+$main-white: #fcffe7;
+$main-accent-blue: #bad7e9;
 
 @import "~bootstrap/scss/bootstrap.scss";
+
+body {
+  background-color: $main-blue;
+}
+
+.logout-button {
+  background-color: $main-accent-blue;
+}

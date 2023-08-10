@@ -47,6 +47,7 @@ export const MainView = () => {
   return (
     <Row className="justify-content-md-center">
       <button
+        className="logout-button"
         onClick={() => {
           setUser(null);
           setToken(null);
