@@ -4,6 +4,8 @@ import { FilmCard } from "../film-card/film-card";
 import { FilmDetails } from "../film-details/film-details";
 import { LogInView } from "../login-view/login-view";
 import { SignUpView } from "../sign-up-view/sign-up-view";
+import { Row, Col } from "react-bootstrap";
+import "./main-view.scss";
 
 export const MainView = () => {
   //state variables:
@@ -42,39 +44,8 @@ export const MainView = () => {
       });
   }, [token]);
 
-  if (!user) {
-    return (
-      <>
-        <LogInView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-            localStorage.clear();
-          }}
-        />
-        or
-        <SignUpView />
-      </>
-    );
-  }
-
-  if (selectedFilm) {
-    return (
-      <FilmDetails
-        film={selectedFilm}
-        onBackClick={() => {
-          setSelectedFilm(null);
-        }}
-      />
-    );
-  }
-
-  if (films.length === 0) {
-    return <div>The list is empty!</div>;
-  }
-
   return (
-    <div>
+    <Row className="justify-content-md-center">
       <button
         onClick={() => {
           setUser(null);
@@ -84,17 +55,44 @@ export const MainView = () => {
       >
         Logout
       </button>
-      {films.map((film) => {
-        return (
-          <FilmCard
-            key={film.id}
-            film={film}
-            onFilmClick={(newSelectedFilm) => {
-              setSelectedFilm(newSelectedFilm);
+      {!user ? (
+        <Col md={5}>
+          <LogInView
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
             }}
           />
-        );
-      })}
-    </div>
+          or
+          <SignUpView />
+        </Col>
+      ) : selectedFilm ? (
+        <Col md={8}>
+          <FilmDetails
+            film={selectedFilm}
+            onBackClick={() => {
+              setSelectedFilm(null);
+            }}
+          />
+        </Col>
+      ) : films.length === 0 ? (
+        <div>The list is empty!</div>
+      ) : (
+        <>
+          {films.map((film) => {
+            return (
+              <Col key={film.id} className="mb-5" md={3}>
+                <FilmCard
+                  film={film}
+                  onFilmClick={(newSelectedFilm) => {
+                    setSelectedFilm(newSelectedFilm);
+                  }}
+                />
+              </Col>
+            );
+          })}
+        </>
+      )}
+    </Row>
   );
 };

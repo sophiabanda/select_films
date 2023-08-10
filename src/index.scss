@@ -1,7 +1,7 @@
-.film-poster {
-  height: 250px;
-}
-
 .text {
   color: gray;
 }
+
+$primary: teal;
+
+@import "~bootstrap/scss/bootstrap.scss";
