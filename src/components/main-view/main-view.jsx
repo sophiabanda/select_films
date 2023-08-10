@@ -56,7 +56,7 @@ export const MainView = () => {
         Logout
       </button>
       {!user ? (
-        <>
+        <Col md={5}>
           <LogInView
             onLoggedIn={(user, token) => {
               setUser(user);
@@ -65,9 +65,9 @@ export const MainView = () => {
           />
           or
           <SignUpView />
-        </>
+        </Col>
       ) : selectedFilm ? (
-        <Col style={{ border: "1px solid black" }} md={8}>
+        <Col md={8}>
           <FilmDetails
             film={selectedFilm}
             onBackClick={() => {
