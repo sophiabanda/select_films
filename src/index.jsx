@@ -5,7 +5,7 @@ import "./index.scss";
 
 const SelectFilms = () => {
   return (
-    <Container style={{ border: "1px solid red" }}>
+    <Container>
       <MainView />
     </Container>
   );
