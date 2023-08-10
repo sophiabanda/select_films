@@ -81,13 +81,14 @@ export const MainView = () => {
         <>
           {films.map((film) => {
             return (
-              <FilmCard
-                key={film.id}
-                film={film}
-                onFilmClick={(newSelectedFilm) => {
-                  setSelectedFilm(newSelectedFilm);
-                }}
-              />
+              <Col key={film.id} className="mb-5" md={3}>
+                <FilmCard
+                  film={film}
+                  onFilmClick={(newSelectedFilm) => {
+                    setSelectedFilm(newSelectedFilm);
+                  }}
+                />
+              </Col>
             );
           })}
         </>
