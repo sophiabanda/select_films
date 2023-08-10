@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import "./film-details.scss";
 
 export const FilmDetails = ({ film, onBackClick }) => {
@@ -30,7 +31,7 @@ export const FilmDetails = ({ film, onBackClick }) => {
         <span className="text">Summary: </span>
         <span>{film.summary}</span>
       </div>
-      <button onClick={onBackClick}>Back</button>
+      <Button onClick={onBackClick}>Back</Button>
     </div>
   );
 };

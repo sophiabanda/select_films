@@ -1,3 +1,7 @@
 .text {
   color: gray;
 }
+
+$primary: teal;
+
+@import "~bootstrap/scss/bootstrap.scss";
