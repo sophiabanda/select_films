@@ -9,12 +9,15 @@ export const MainView = () => {
   //state variables:
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
   const [selectedFilm, setSelectedFilm] = useState(null);
 
   useEffect(() => {
+    if (!token) {
+      return;
+    }
     fetch(`https://sophia-films.herokuapp.com/films`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -32,13 +35,12 @@ export const MainView = () => {
             favorite: item.Favorite,
           };
         });
-        setFilms(filmsFromAPI);
+        const sortedFilms = filmsFromAPI.sort((a, b) =>
+          a.title.localeCompare(b.title)
+        );
+        setFilms(sortedFilms);
       });
   }, [token]);
-
-  if (!token) {
-    return;
-  }
 
   if (!user) {
     return (
@@ -77,6 +79,7 @@ export const MainView = () => {
         onClick={() => {
           setUser(null);
           setToken(null);
+          localStorage.clear();
         }}
       >
         Logout
