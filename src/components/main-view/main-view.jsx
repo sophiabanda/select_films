@@ -6,6 +6,7 @@ import { LogInView } from "../login-view/login-view";
 import { SignUpView } from "../sign-up-view/sign-up-view";
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {
   //state variables:
@@ -14,7 +15,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
-  const [selectedFilm, setSelectedFilm] = useState(null);
+  // const [selectedFilm, setSelectedFilm] = useState(null);
 
   useEffect(() => {
     if (!token) {
@@ -46,6 +47,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
+      <NavigationBar></NavigationBar>
       <Row className="justify-content-md-center">
         <Routes>
           <Route
