@@ -4,7 +4,6 @@ import { useParams, Link } from "react-router-dom";
 export const FilmDetails = ({ films }) => {
   const { filmId } = useParams();
   const film = films.find((f) => f.id === filmId);
-  console.log(films);
 
   return (
     <div className="text">

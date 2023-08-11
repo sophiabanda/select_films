@@ -17,6 +17,10 @@ export const MainView = () => {
   const [films, setFilms] = useState([]);
   // const [selectedFilm, setSelectedFilm] = useState(null);
 
+  const onLoggedOut = () => {
+    setUser(null), setToken(null);
+  };
+
   useEffect(() => {
     if (!token) {
       return;
@@ -47,7 +51,7 @@ export const MainView = () => {
 
   return (
     <BrowserRouter>
-      <NavigationBar></NavigationBar>
+      <NavigationBar onLoggedOut={onLoggedOut} user={user}></NavigationBar>
       <Row className="justify-content-md-center">
         <Routes>
           <Route
