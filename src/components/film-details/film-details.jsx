@@ -1,12 +1,17 @@
 import { Button } from "react-bootstrap";
+import { useParams, Link } from "react-router-dom";
 
-export const FilmDetails = ({ film, onBackClick }) => {
+export const FilmDetails = ({ films }) => {
+  const { filmId } = useParams();
+  const film = films.find((f) => f.id === filmId);
+  console.log(films);
+
   return (
     <div className="text">
       <div>
         <img
           alt="Original film poster for film"
-          className="film-poster"
+          className="detail-poster"
           src={film.image}
         />
       </div>
@@ -30,7 +35,9 @@ export const FilmDetails = ({ film, onBackClick }) => {
         <span className="text">Summary: </span>
         <span>{film.summary}</span>
       </div>
-      <Button onClick={onBackClick}>Back</Button>
+      <Link to="/">
+        <Button className="back-button">Back</Button>
+      </Link>
     </div>
   );
 };

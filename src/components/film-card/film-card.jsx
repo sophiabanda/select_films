@@ -1,15 +1,15 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const FilmCard = ({ film, onFilmClick }) => {
+export const FilmCard = ({ film }) => {
   return (
-    <Card className="h-100, card-background" onClick={() => onFilmClick(film)}>
+    <Card className="h-100, card-background">
       <Card.Img src={film.image}></Card.Img>
       <Card.Body>
         <Card.Title>{film.title}</Card.Title>
         {/* <Card.Text>{film.summary}</Card.Text> */}
         <Link to={`/films/${encodeURI(film.id)}`}>
-          <Button variant="link">More detail</Button>
+          <Button>More detail</Button>
         </Link>
       </Card.Body>
     </Card>
