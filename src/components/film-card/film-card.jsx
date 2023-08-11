@@ -1,5 +1,4 @@
 import { Button, Card } from "react-bootstrap";
-import "./film-card.scss";
 
 export const FilmCard = ({ film, onFilmClick }) => {
   return (

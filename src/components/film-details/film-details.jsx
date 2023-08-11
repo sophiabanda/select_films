@@ -1,5 +1,4 @@
 import { Button } from "react-bootstrap";
-import "./film-details.scss";
 
 export const FilmDetails = ({ film, onBackClick }) => {
   return (

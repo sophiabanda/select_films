@@ -6,7 +6,6 @@ import { LogInView } from "../login-view/login-view";
 import { SignUpView } from "../sign-up-view/sign-up-view";
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./main-view.scss";
 
 export const MainView = () => {
   //state variables:
@@ -46,55 +45,129 @@ export const MainView = () => {
   }, [token]);
 
   return (
-    <Row className="justify-content-md-center">
-      <button
-        className="logout-button"
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        Logout
-      </button>
-      {!user ? (
-        <Col md={5}>
-          <LogInView
-            onLoggedIn={(user, token) => {
-              setUser(user);
-              setToken(token);
-            }}
-          />
-          or
-          <SignUpView />
-        </Col>
-      ) : selectedFilm ? (
-        <Col md={8}>
-          <FilmDetails
-            film={selectedFilm}
-            onBackClick={() => {
-              setSelectedFilm(null);
-            }}
-          />
-        </Col>
-      ) : films.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {films.map((film) => {
-            return (
-              <Col key={film.id} className="mb-5" md={3}>
-                <FilmCard
-                  film={film}
-                  onFilmClick={(newSelectedFilm) => {
-                    setSelectedFilm(newSelectedFilm);
-                  }}
-                />
-              </Col>
-            );
-          })}
-        </>
-      )}
-    </Row>
+    <BrowserRouter>
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignUpView />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col>
+                    <LogInView
+                      onLoggedIn={(user, token) => {
+                        setUser(user), setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/films/:filmId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : films.length === 0 ? (
+                  <Col>Sadly, there are no films to see here.</Col>
+                ) : (
+                  <Col md={8}>
+                    <FilmCard />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : films.length === 0 ? (
+                  <Col>Sadly, there are no films to see here.</Col>
+                ) : (
+                  <>
+                    {films.map((film) => (
+                      <Col>
+                        <FilmCard film={film} />
+                      </Col>
+                    ))}
+                  </>
+                )}
+              </>
+            }
+          ></Route>
+        </Routes>
+      </Row>
+    </BrowserRouter>
+    // <Row >
+    //   <button
+    //     className="logout-button"
+    //     onClick={() => {
+    //       setUser(null);
+    //       setToken(null);
+    //       localStorage.clear();
+    //     }}
+    //   >
+    //     Logout
+    //   </button>
+    //   {!user ? (
+    //     <Col md={5}>
+    //       <LogInView
+    //         onLoggedIn={(user, token) => {
+    //           setUser(user);
+    //           setToken(token);
+    //         }}
+    //       />
+    //       or
+    //       <SignUpView />
+    //     </Col>
+    //   ) : selectedFilm ? (
+    //     <Col md={8}>
+    //       <FilmDetails
+    //         film={selectedFilm}
+    //         onBackClick={() => {
+    //           setSelectedFilm(null);
+    //         }}
+    //       />
+    //     </Col>
+    //   ) : films.length === 0 ? (
+    //     <div>The list is empty!</div>
+    //   ) : (
+    //     <>
+    //       {films.map((film) => {
+    //         return (
+    //           <Col key={film.id} className="mb-5" md={3}>
+    //             <FilmCard
+    //               film={film}
+    //               onFilmClick={(newSelectedFilm) => {
+    //                 setSelectedFilm(newSelectedFilm);
+    //               }}
+    //             />
+    //           </Col>
+    //         );
+    //       })}
+    //     </>
+    //   )}
+    // </Row>
   );
 };
