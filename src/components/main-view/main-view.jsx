@@ -119,55 +119,5 @@ export const MainView = () => {
         </Routes>
       </Row>
     </BrowserRouter>
-    // <Row >
-    //   <button
-    //     className="logout-button"
-    //     onClick={() => {
-    //       setUser(null);
-    //       setToken(null);
-    //       localStorage.clear();
-    //     }}
-    //   >
-    //     Logout
-    //   </button>
-    //   {!user ? (
-    //     <Col md={5}>
-    //       <LogInView
-    //         onLoggedIn={(user, token) => {
-    //           setUser(user);
-    //           setToken(token);
-    //         }}
-    //       />
-    //       or
-    //       <SignUpView />
-    //     </Col>
-    //   ) : selectedFilm ? (
-    //     <Col md={8}>
-    //       <FilmDetails
-    //         film={selectedFilm}
-    //         onBackClick={() => {
-    //           setSelectedFilm(null);
-    //         }}
-    //       />
-    //     </Col>
-    //   ) : films.length === 0 ? (
-    //     <div>The list is empty!</div>
-    //   ) : (
-    //     <>
-    //       {films.map((film) => {
-    //         return (
-    //           <Col key={film.id} className="mb-5" md={3}>
-    //             <FilmCard
-    //               film={film}
-    //               onFilmClick={(newSelectedFilm) => {
-    //                 setSelectedFilm(newSelectedFilm);
-    //               }}
-    //             />
-    //           </Col>
-    //         );
-    //       })}
-    //     </>
-    //   )}
-    // </Row>
   );
 };

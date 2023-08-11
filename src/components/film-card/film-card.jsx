@@ -1,4 +1,5 @@
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const FilmCard = ({ film, onFilmClick }) => {
   return (
@@ -7,7 +8,9 @@ export const FilmCard = ({ film, onFilmClick }) => {
       <Card.Body>
         <Card.Title>{film.title}</Card.Title>
         {/* <Card.Text>{film.summary}</Card.Text> */}
-        <Button>More detail</Button>
+        <Link to={`/films/${encodeURI(film.id)}`}>
+          <Button variant="link">More detail</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
