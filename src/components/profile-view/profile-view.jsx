@@ -2,6 +2,7 @@ import { Button, Link } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const ProfileView = ({ user }) => {
+  console.log(user);
   return (
     <>
       <div>
