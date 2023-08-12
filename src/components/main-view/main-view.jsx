@@ -7,6 +7,8 @@ import { SignUpView } from "../sign-up-view/sign-up-view";
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
+import { UpdateView } from "../profile-view/update-view";
 
 export const MainView = () => {
   //state variables:
@@ -81,6 +83,34 @@ export const MainView = () => {
                         setUser(user), setToken(token);
                       }}
                     />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col>
+                    <ProfileView user={user} />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/update/:userId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col>
+                    <UpdateView loggedInUser={user} />
                   </Col>
                 )}
               </>

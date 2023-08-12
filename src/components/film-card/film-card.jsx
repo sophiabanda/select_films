@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const FilmCard = ({ film }) => {
   return (
-    <Card className="h-100, card-background">
+    <Card className="h-100">
       <Card.Img src={film.image}></Card.Img>
       <Card.Body>
         <Card.Title>{film.title}</Card.Title>

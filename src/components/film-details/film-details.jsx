@@ -37,6 +37,16 @@ export const FilmDetails = ({ films }) => {
       <Link to="/">
         <Button className="back-button">Back</Button>
       </Link>
+      {/* <ToggleButton
+        id="toggle-check"
+        type="checkbox"
+        variant="secondary"
+        checked={checked}
+        value="1"
+        onChange={(e) => setChecked(e.currentTarget.checked)}
+      >
+        Favorite
+      </ToggleButton> */}
     </div>
   );
 };
