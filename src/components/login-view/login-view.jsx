@@ -36,9 +36,9 @@ export const LogInView = ({ onLoggedIn }) => {
       });
   };
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="form-label" onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Label>Username: </Form.Label>
+        <Form.Label className="form-label">Username: </Form.Label>
         <Form.Control
           type="text"
           value={username}

@@ -33,7 +33,7 @@ export const SignUpView = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="form-label" onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Label>Username:</Form.Label>
         <Form.Control
@@ -65,7 +65,7 @@ export const SignUpView = () => {
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
         ></Form.Control>
-        <Form.Text>(Birthdate is optional)</Form.Text>
+        <Form.Text className="form-label">(Birthdate is optional)</Form.Text>
       </Form.Group>
       <Button type="submit">Submit</Button>
     </Form>

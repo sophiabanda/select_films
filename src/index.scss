@@ -1,17 +1,13 @@
 $primary: #eb455f;
-$main-blue: #2b3467;
+$main-black: #262626;
 $main-red: #eb455f;
 $main-white: #fcffe7;
-$main-accent-blue: #bad7e9;
+$main-accent-black: #bad7e9;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
 body {
-  background-color: $main-blue;
-}
-
-.logout-button {
-  background-color: $main-accent-blue;
+  background-color: $main-black;
 }
 
 .card-background {
@@ -24,4 +20,8 @@ body {
 
 .detail-poster {
   width: 100%;
+}
+
+.form-label {
+  color: white;
 }
