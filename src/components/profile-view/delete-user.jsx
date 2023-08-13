@@ -14,8 +14,11 @@ export const DeleteUser = ({ loggedInUser, storedToken }) => {
         Authorization: `Bearer ${storedToken}`,
       },
     })
-      .then((loggedInUser) => handleDelete(loggedInUser))
-      .then(handleClose);
+      .then(onLoggedOut())
+      .then(() => handleClose())
+      .catch((error) => {
+        console.log("Error deleting user.", error);
+      });
   };
   return (
     <>
