@@ -22,6 +22,10 @@ export const MainView = () => {
   const onLoggedOut = () => {
     setUser(null), setToken(null);
   };
+  const updateUser = (newUser) => {
+    localStorage.setItem("user", JSON.stringify(newUser));
+    setUser(newUser);
+  };
 
   useEffect(() => {
     if (!token) {
@@ -96,21 +100,25 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col>
-                    <ProfileView user={user} />
+                    <ProfileView films={films} user={user} />
                   </Col>
                 )}
               </>
             }
           ></Route>
           <Route
-            path="/update/:userId"
+            path="/user/:userId"
             element={
               <>
                 {!user ? (
                   <Navigate to="/login" replace />
                 ) : (
                   <Col>
-                    <UpdateView loggedInUser={user} />
+                    <UpdateView
+                      handleUpdateUser={updateUser}
+                      loggedInUser={user}
+                      storedToken={storedToken}
+                    />
                   </Col>
                 )}
               </>
