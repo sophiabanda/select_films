@@ -22,6 +22,7 @@ export const MainView = () => {
   const onLoggedOut = () => {
     setUser(null), setToken(null);
   };
+
   const updateUser = (newUser) => {
     localStorage.setItem("user", JSON.stringify(newUser));
     setUser(newUser);
@@ -118,6 +119,7 @@ export const MainView = () => {
                       handleUpdateUser={updateUser}
                       loggedInUser={user}
                       storedToken={storedToken}
+                      onLoggedOut={onLoggedOut}
                     />
                   </Col>
                 )}

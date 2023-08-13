@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
+import { DeleteUser } from "./delete-user";
 
-export const UpdateView = ({ loggedInUser, handleUpdateUser, storedToken }) => {
+export const UpdateView = ({
+  loggedInUser,
+  handleUpdateUser,
+  storedToken,
+  onLoggedOut,
+}) => {
   const [username, setUsername] = useState(loggedInUser.Name);
   const [email, setEmail] = useState(loggedInUser.Email);
   const [password, setPassword] = useState("");
@@ -37,7 +43,11 @@ export const UpdateView = ({ loggedInUser, handleUpdateUser, storedToken }) => {
       <Button variant="primary" onClick={handleShow}>
         Update user information
       </Button>
-
+      <DeleteUser
+        onLoggedOut={onLoggedOut}
+        loggedInUser={loggedInUser}
+        storedToken={storedToken}
+      />
       <Modal
         show={show}
         onHide={handleClose}
