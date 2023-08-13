@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-export const DeleteUser = ({ loggedInUser, storedToken }) => {
+export const DeleteUser = ({ loggedInUser, storedToken, onLoggedOut }) => {
   console.log(loggedInUser);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
