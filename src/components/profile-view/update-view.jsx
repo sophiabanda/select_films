@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button, Modal } from "react-bootstrap";
+import { Form, Button, Modal, Col, Row } from "react-bootstrap";
 import { DeleteUser } from "./delete-user";
 
 export const UpdateView = ({
@@ -39,15 +39,19 @@ export const UpdateView = ({
       .then(handleClose);
   };
   return (
-    <>
-      <Button variant="primary" onClick={handleShow}>
-        Update user information
-      </Button>
-      <DeleteUser
-        onLoggedOut={onLoggedOut}
-        loggedInUser={loggedInUser}
-        storedToken={storedToken}
-      />
+    <Row>
+      <Col>
+        <Button variant="primary" onClick={handleShow}>
+          Update user information
+        </Button>
+      </Col>
+      <Col>
+        <DeleteUser
+          onLoggedOut={onLoggedOut}
+          loggedInUser={loggedInUser}
+          storedToken={storedToken}
+        />
+      </Col>
       <Modal
         show={show}
         onHide={handleClose}
@@ -102,6 +106,6 @@ export const UpdateView = ({
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </Row>
   );
 };
