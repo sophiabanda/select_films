@@ -14,6 +14,7 @@ export const DeleteUser = ({ loggedInUser, storedToken, onLoggedOut }) => {
         Authorization: `Bearer ${storedToken}`,
         "Cache-control": "no-cache",
       },
+      //Makes sure cached content is up to date - validates, but only uses if nothing has changed
     })
       .then((response) => {
         if (response.ok) {
