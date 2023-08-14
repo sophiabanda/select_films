@@ -18,7 +18,7 @@ export const ProfileView = ({ user, films }) => {
         </Col>
         <Col>
           <div>
-            {/* <FavoriteFilms films={films} user={user}></FavoriteFilms> */}
+            <FavoriteFilms films={films} user={user}></FavoriteFilms>
           </div>
           <Link to={`/user/${encodeURI(user._id)}`}>
             <Button>Update user information</Button>
