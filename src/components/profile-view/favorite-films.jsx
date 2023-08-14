@@ -1,3 +1,4 @@
 export const FavoriteFilms = ({ user, films }) => {
-  console.log(user, films);
+  const faveFilms = films.filter((f) => user.Favorites.includes(f.id));
+  console.log(faveFilms);
 };
