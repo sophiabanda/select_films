@@ -12,11 +12,12 @@ export const DeleteUser = ({ loggedInUser, storedToken, onLoggedOut }) => {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${storedToken}`,
+        "Cache-control": "no-cache",
       },
     })
       .then((response) => {
         if (response.ok) {
-          alert("User deleted successfully");
+          alert(`${loggedInUser.Name} deleted successfullly.`);
           handleClose();
           onLoggedOut(); // Call the logout function after successful deletion
         } else {
