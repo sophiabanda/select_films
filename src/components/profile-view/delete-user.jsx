@@ -14,12 +14,20 @@ export const DeleteUser = ({ loggedInUser, storedToken, onLoggedOut }) => {
         Authorization: `Bearer ${storedToken}`,
       },
     })
-      .then(onLoggedOut())
-      .then(() => handleClose())
+      .then((response) => {
+        if (response.ok) {
+          alert("User deleted successfully");
+          handleClose();
+          onLoggedOut(); // Call the logout function after successful deletion
+        } else {
+          throw new Error("Failed to delete user.");
+        }
+      })
       .catch((error) => {
         console.log("Error deleting user.", error);
       });
   };
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>

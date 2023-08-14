@@ -20,7 +20,10 @@ export const MainView = () => {
   // const [selectedFilm, setSelectedFilm] = useState(null);
 
   const onLoggedOut = () => {
-    setUser(null), setToken(null);
+    setUser(null),
+      setToken(null),
+      localStorage.removeItem("user"),
+      localStorage.removeItem("token");
   };
 
   const updateUser = (newUser) => {
