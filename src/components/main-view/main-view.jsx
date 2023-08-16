@@ -104,7 +104,11 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : (
                   <Col>
-                    <ProfileView films={films} user={user} />
+                    <ProfileView
+                      storedToken={storedToken}
+                      films={films}
+                      user={user}
+                    />
                   </Col>
                 )}
               </>

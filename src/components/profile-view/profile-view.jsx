@@ -2,7 +2,7 @@ import { Button, Link, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavoriteFilms } from "./favorite-films";
 
-export const ProfileView = ({ user, films }) => {
+export const ProfileView = ({ user, films, storedToken }) => {
   return (
     <>
       <Row>
@@ -23,10 +23,12 @@ export const ProfileView = ({ user, films }) => {
         </Col>
       </Row>
       <Row>
-        <FavoriteFilms films={films} user={user}></FavoriteFilms>
+        {/* <FavoriteFilms
+          storedToken={storedToken}
+          films={films}
+          user={user}
+        ></FavoriteFilms> */}
       </Row>
     </>
   );
 };
-
-//modal should pop up for each button
