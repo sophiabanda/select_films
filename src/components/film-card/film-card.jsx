@@ -1,25 +1,25 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { React, useState } from "react";
 
 //     //logic:
 //     //if filmCard favorite button is clicked
 //     //add to loggedInUser favorites
 
-export const FilmCard = ({ film }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+export const FilmCard = ({ film, user }) => {
+  console.log(film, user, user.Favorites);
 
   return (
-    <Link to={`/films/${encodeURI(film.id)}`}>
-      <Card className="h-100">
-        <Card.Img src={film.image}></Card.Img>
-        <Card.Body>
-          <Card.Title>{film.title}</Card.Title>
-          {/* <Card.Text>{film.summary}</Card.Text> */}
-        </Card.Body>
+    <Card className="h-100">
+      <Card.Img src={film.image}></Card.Img>
+      <Card.Body>
+        <Card.Title>{film.title}</Card.Title>
+        {/* <Card.Text>{film.summary}</Card.Text> */}
+        <Link to={`/films/${encodeURI(film.id)}`}>
+          <Button>More detail</Button>
+        </Link>
         <Button>Favorite</Button>
-      </Card>
-    </Link>
+      </Card.Body>
+    </Card>
   );
 };
 
