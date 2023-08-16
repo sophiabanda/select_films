@@ -1,7 +1,7 @@
-import { Button } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 
-export const FilmDetails = ({ films }) => {
+export const FilmDetails = ({ films, user }) => {
   const { filmId } = useParams();
   const film = films.find((f) => f.id === filmId);
 

@@ -23,11 +23,11 @@ export const ProfileView = ({ user, films, storedToken }) => {
         </Col>
       </Row>
       <Row>
-        {/* <FavoriteFilms
+        <FavoriteFilms
           storedToken={storedToken}
           films={films}
           user={user}
-        ></FavoriteFilms> */}
+        ></FavoriteFilms>
       </Row>
     </>
   );

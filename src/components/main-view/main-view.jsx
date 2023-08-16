@@ -143,7 +143,7 @@ export const MainView = () => {
                   <Col>Sadly, there are no films to see here.</Col>
                 ) : (
                   <Col md={8}>
-                    <FilmDetails films={films} />
+                    <FilmDetails user={user} films={films} />
                   </Col>
                 )}
               </>
@@ -161,7 +161,7 @@ export const MainView = () => {
                   <>
                     {films.map((film) => (
                       <Col className="mb-4" key={film.id} md={3}>
-                        <FilmCard user={user} film={film} />
+                        <FilmCard film={film} />
                       </Col>
                     ))}
                   </>
