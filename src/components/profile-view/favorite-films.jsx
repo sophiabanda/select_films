@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { Button, Col } from "react-bootstrap";
 
-export const FavoriteFilms = ({ user, films, storedToken }) => {
-  //   const [isFavorite, setIsFavorite] = useState(false);
-  const findFavorite = films.filter((f) => user.Favorites.includes(f.id));
-  console.log(findFavorite);
+export const FavoriteFilms = ({
+  user,
+  films,
+  storedToken,
+  filmId,
+  handleUpdateUser,
+}) => {
+  const showFavorite = films.filter((f) => user.Favorites.includes(f.id));
+  console.log(showFavorite);
+  console.log("FILM ID:", filmId);
+  console.log("USER:", user);
 
   const removeFavorite = () => {
     fetch(
-      `https://sophia-films.herokuapp.com/users/${user._id}/films/${films._id}`,
+      `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
       {
         method: "DELETE",
         headers: {
@@ -25,7 +32,7 @@ export const FavoriteFilms = ({ user, films, storedToken }) => {
 
   const addFavorite = () => {
     fetch(
-      `https://sophia-films.herokuapp.com/users/${user._id}/films/${films._id}`,
+      `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
       {
         method: "POST",
         headers: {
@@ -36,8 +43,17 @@ export const FavoriteFilms = ({ user, films, storedToken }) => {
       .then((response) => {
         if (response.ok) {
           console.log("Film successfully added to favorites.");
+          (user) => handleUpdateUser(user);
+          console.log(user);
         }
       })
       .catch((error) => console.log("Film was not added.", error));
   };
+
+  return (
+    <>
+      <Button onClick={addFavorite}>Add Favorite</Button>
+      <Button onClick={removeFavorite}>Remove Favorite</Button>
+    </>
+  );
 };

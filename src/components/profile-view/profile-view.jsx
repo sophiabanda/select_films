@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FavoriteFilms } from "./favorite-films";
 
 export const ProfileView = ({ user, films, storedToken }) => {
+  console.log(storedToken);
   return (
     <>
       <Row>

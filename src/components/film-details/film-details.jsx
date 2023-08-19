@@ -1,7 +1,8 @@
 import { Button, Row, Col } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
+import { FavoriteFilms } from "../profile-view/favorite-films";
 
-export const FilmDetails = ({ films, user }) => {
+export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
   const { filmId } = useParams();
   const film = films.find((f) => f.id === filmId);
 
@@ -37,7 +38,13 @@ export const FilmDetails = ({ films, user }) => {
       <Link to="/">
         <Button className="back-button">Back</Button>
       </Link>
-      <Button>Favorite</Button>
+      <FavoriteFilms
+        user={user}
+        films={films}
+        storedToken={storedToken}
+        filmId={filmId}
+        handleUpdateUser={handleUpdateUser}
+      />
     </div>
   );
 };

@@ -143,7 +143,12 @@ export const MainView = () => {
                   <Col>Sadly, there are no films to see here.</Col>
                 ) : (
                   <Col md={8}>
-                    <FilmDetails user={user} films={films} />
+                    <FilmDetails
+                      storedToken={storedToken}
+                      user={user}
+                      films={films}
+                      handleUpdateUser={updateUser}
+                    />
                   </Col>
                 )}
               </>
