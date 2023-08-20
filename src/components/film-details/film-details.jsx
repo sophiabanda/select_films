@@ -1,4 +1,4 @@
-import { Button, Row, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { FavoriteFilms } from "../profile-view/favorite-films";
 

@@ -24,6 +24,7 @@ export const FavoriteFilms = ({
     )
       .then((response) => {
         if (response.ok) {
+          handleUpdateUser(user);
           console.log("Film successfully removed from favorites.");
         }
       })
@@ -42,8 +43,8 @@ export const FavoriteFilms = ({
     )
       .then((response) => {
         if (response.ok) {
+          handleUpdateUser(user);
           console.log("Film successfully added to favorites.");
-          (user) => handleUpdateUser(user);
           console.log(user);
         }
       })
