@@ -1,4 +1,6 @@
-import { Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
 
 export const FavoriteFilms = ({
   user,
@@ -6,10 +8,24 @@ export const FavoriteFilms = ({
   filmId,
   handleUpdateUser,
 }) => {
-  console.log("USER:", user);
-  console.log("TOKEN:", storedToken);
-  console.log("FILMID:", filmId);
-  console.log("UPDATEUSER:", handleUpdateUser);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    // You can set the initial favorite state here based on user's favorites
+    const isFilmFavorite = user.favoriteFilms.includes(filmId);
+    setIsFavorite(isFilmFavorite);
+  }, [user.favoriteFilms, filmId]);
+
+  const handleFavoriteToggle = () => {
+    setIsFavorite((prevState) => !prevState);
+
+    if (isFavorite) {
+      removeFavorite();
+    } else {
+      addFavorite();
+    }
+  };
+
   const removeFavorite = () => {
     fetch(
       `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
@@ -51,8 +67,16 @@ export const FavoriteFilms = ({
 
   return (
     <>
-      <Button onClick={addFavorite}>Add Favorite</Button>
-      <Button onClick={removeFavorite}>Remove Favorite</Button>
+      <ButtonGroup toggle>
+        <ToggleButton
+          type="checkbox"
+          variant={isFavorite ? "danger" : "outline-danger"}
+          checked={isFavorite}
+          onChange={handleFavoriteToggle}
+        >
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </ToggleButton>
+      </ButtonGroup>
     </>
   );
 };
