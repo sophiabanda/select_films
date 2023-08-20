@@ -5,6 +5,7 @@ import { FavoriteFilms } from "./favorite-films";
 export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
   const { filmId } = useParams();
   const film = films.find((f) => f.id === filmId);
+
   console.log("USER:", user);
   console.log("TOKEN:", storedToken);
   console.log("FILMID:", filmId);
@@ -42,6 +43,12 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
       <Link to="/">
         <Button className="back-button">Back</Button>
       </Link>
+      <FavoriteFilms
+        user={user}
+        storedToken={storedToken}
+        films={films}
+        handleUpdateUser={handleUpdateUser}
+      />
     </div>
   );
 };

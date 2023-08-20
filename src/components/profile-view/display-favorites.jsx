@@ -3,6 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import { FilmCard } from "../film-card/film-card";
 
 export const DisplayFavorites = ({ films, user }) => {
+  console.log("USER:", user);
   const showFavorite = films.filter((f) => user.Favorites.includes(f.id));
 
   if (showFavorite.length === 0) {

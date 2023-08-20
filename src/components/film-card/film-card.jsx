@@ -12,8 +12,8 @@ export const FilmCard = ({ film }) => {
         <Link to={`/films/${encodeURI(film.id)}`}>
           <Button>More detail</Button>
         </Link>
+        <FavoriteFilms />
       </Card.Body>
-      <FavoriteFilms />
     </Card>
   );
 };

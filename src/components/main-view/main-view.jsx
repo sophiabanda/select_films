@@ -30,6 +30,10 @@ export const MainView = () => {
     setUser(newUser);
   };
 
+  // console.log("USER:", user);
+  // console.log("TOKEN:", storedToken);
+  // console.log("UPDATEUSER:", updateUser);
+
   useEffect(() => {
     if (!token) {
       return;
