@@ -42,13 +42,6 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
       <Link to="/">
         <Button className="back-button">Back</Button>
       </Link>
-      {/* <FavoriteFilms
-        user={user}
-        films={films}
-        storedToken={storedToken}
-        filmId={filmId}
-        handleUpdateUser={handleUpdateUser}
-      /> */}
     </div>
   );
 };

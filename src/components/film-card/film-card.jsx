@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import { FavoriteFilms } from "../film-details/favorite-films";
+import { FavoriteFilms } from "../film-details/favorite-films";
 
 export const FilmCard = ({ film }) => {
   return (
