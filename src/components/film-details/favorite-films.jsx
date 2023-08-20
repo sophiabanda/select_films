@@ -3,8 +3,8 @@ import { Button } from "react-bootstrap";
 export const FavoriteFilms = ({
   user,
   storedToken,
-  filmId,
   handleUpdateUser,
+  filmId,
 }) => {
   console.log("USER:", user);
   console.log("TOKEN:", storedToken);

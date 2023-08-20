@@ -48,6 +48,7 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
         storedToken={storedToken}
         films={films}
         handleUpdateUser={handleUpdateUser}
+        filmId={filmId}
       />
     </div>
   );
