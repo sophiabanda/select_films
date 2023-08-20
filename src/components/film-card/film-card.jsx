@@ -1,5 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FavoriteFilms } from "../profile-view/favorite-films";
 
 export const FilmCard = ({ film }) => {
   return (
@@ -11,6 +12,7 @@ export const FilmCard = ({ film }) => {
         <Link to={`/films/${encodeURI(film.id)}`}>
           <Button>More detail</Button>
         </Link>
+        <FavoriteFilms />
       </Card.Body>
     </Card>
   );
