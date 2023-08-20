@@ -1,17 +1,11 @@
-import { Button, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 export const FavoriteFilms = ({
   user,
-  films,
   storedToken,
   filmId,
   handleUpdateUser,
 }) => {
-  const showFavorite = films.filter((f) => user.Favorites.includes(f.id));
-  console.log(showFavorite);
-  console.log("FILM ID:", filmId);
-  console.log("USER:", user);
-
   const removeFavorite = () => {
     fetch(
       `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,

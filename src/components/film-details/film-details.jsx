@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
-import { FavoriteFilms } from "../profile-view/favorite-films";
+import { FavoriteFilms } from "./favorite-films";
 
 export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
   const { filmId } = useParams();
