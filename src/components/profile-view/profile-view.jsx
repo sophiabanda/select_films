@@ -1,6 +1,5 @@
 import { Button, Link, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import { DisplayFavorites } from "./display-favorites";
 
 export const ProfileView = ({ user, films }) => {
   return (
@@ -22,9 +21,7 @@ export const ProfileView = ({ user, films }) => {
           </Link>
         </Col>
       </Row>
-      <Row>
-        {/* <DisplayFavorites user={user} films={films}></DisplayFavorites> */}
-      </Row>
+      <Row></Row>
     </>
   );
 };
