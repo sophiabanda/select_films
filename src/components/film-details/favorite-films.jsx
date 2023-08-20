@@ -6,6 +6,10 @@ export const FavoriteFilms = ({
   filmId,
   handleUpdateUser,
 }) => {
+  console.log("USER:", user);
+  console.log("TOKEN:", storedToken);
+  console.log("FILMID:", filmId);
+  console.log("UPDATEUSER:", handleUpdateUser);
   const removeFavorite = () => {
     fetch(
       `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,

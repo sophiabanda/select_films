@@ -23,7 +23,7 @@ export const ProfileView = ({ user, films }) => {
         </Col>
       </Row>
       <Row>
-        <DisplayFavorites user={user} films={films} />
+        <DisplayFavorites user={user} films={films}></DisplayFavorites>
       </Row>
     </>
   );
