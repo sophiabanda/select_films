@@ -17,7 +17,6 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
-  // const [selectedFilm, setSelectedFilm] = useState(null);
 
   const onLoggedOut = () => {
     setUser(null),
