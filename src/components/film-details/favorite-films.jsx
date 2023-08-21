@@ -1,6 +1,11 @@
 import { Button } from "react-bootstrap";
 
-export const FavoriteFilms = ({ user, storedToken, handleUpdateUser }) => {
+export const FavoriteFilms = ({
+  user,
+  storedToken,
+  handleUpdateUser,
+  filmId,
+}) => {
   console.log("USER:", user);
   console.log("TOKEN:", storedToken);
   console.log("UPDATEUSER:", handleUpdateUser);
