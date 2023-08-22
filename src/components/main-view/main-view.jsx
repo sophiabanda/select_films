@@ -29,6 +29,8 @@ export const MainView = () => {
     setUser(newUser);
   };
 
+  const filmId = films.find((f) => f.id);
+
   console.log("USER:", user);
   console.log("TOKEN:", storedToken);
   console.log("UPDATEUSER:", updateUser);
