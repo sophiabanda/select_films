@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import { UpdateView } from "../profile-view/update-view";
+import { FavoriteButton } from "../film-card/favorite-button";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -16,6 +17,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const onLoggedOut = () => {
     setUser(null),
@@ -28,12 +30,6 @@ export const MainView = () => {
     localStorage.setItem("user", JSON.stringify(newUser));
     setUser(newUser);
   };
-
-  const filmId = films.find((f) => f.id);
-
-  console.log("USER:", user);
-  console.log("TOKEN:", storedToken);
-  console.log("UPDATEUSER:", updateUser);
 
   useEffect(() => {
     if (!token) {
@@ -63,43 +59,45 @@ export const MainView = () => {
       });
   }, [token]);
 
-  const removeFavorite = () => {
-    fetch(
-      `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          console.log("Film successfully removed from favorites.");
+  useEffect(() => {
+    const removeFavorite = () => {
+      fetch(
+        `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
         }
-      })
-      .catch((error) => console.log("Film was not deleted.", error));
-  };
+      )
+        .then((response) => {
+          if (response.ok) {
+            console.log("Film successfully removed from favorites.");
+          }
+        })
+        .catch((error) => console.log("Film was not deleted.", error));
+    };
 
-  const addFavorite = () => {
-    fetch(
-      `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          console.log("Film successfully added to favorites.");
-          (user) => handleUpdateUser(user);
-          console.log(user);
+    const addFavorite = () => {
+      fetch(
+        `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
         }
-      })
-      .catch((error) => console.log("Film was not added.", error));
-  };
+      )
+        .then((response) => {
+          if (response.ok) {
+            console.log("Film successfully added to favorites.");
+            (user) => handleUpdateUser(user);
+            console.log(user);
+          }
+        })
+        .catch((error) => console.log("Film was not added.", error));
+    };
+  }, [user.Favorites, filmId]);
 
   return (
     <BrowserRouter>
@@ -220,6 +218,7 @@ export const MainView = () => {
                           storedToken={storedToken}
                           handleUpdateUser={updateUser}
                         />
+                        <FavoriteButton film={film} user={user} />
                       </Col>
                     ))}
                   </>
