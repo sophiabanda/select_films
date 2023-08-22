@@ -11,7 +11,6 @@ import { ProfileView } from "../profile-view/profile-view";
 import { UpdateView } from "../profile-view/update-view";
 
 export const MainView = () => {
-  //state variables:
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
@@ -62,6 +61,44 @@ export const MainView = () => {
       });
   }, [token]);
 
+  const removeFavorite = () => {
+    fetch(
+      `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          console.log("Film successfully removed from favorites.");
+        }
+      })
+      .catch((error) => console.log("Film was not deleted.", error));
+  };
+
+  const addFavorite = () => {
+    fetch(
+      `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          console.log("Film successfully added to favorites.");
+          (user) => handleUpdateUser(user);
+          console.log(user);
+        }
+      })
+      .catch((error) => console.log("Film was not added.", error));
+  };
+
   return (
     <BrowserRouter>
       <NavigationBar onLoggedOut={onLoggedOut} user={user}></NavigationBar>
@@ -111,6 +148,8 @@ export const MainView = () => {
                       storedToken={storedToken}
                       films={films}
                       user={user}
+                      removeFavorite={removeFavorite}
+                      addFavorite={addFavorite}
                     />
                   </Col>
                 )}
@@ -130,6 +169,8 @@ export const MainView = () => {
                       loggedInUser={user}
                       storedToken={storedToken}
                       onLoggedOut={onLoggedOut}
+                      removeFavorite={removeFavorite}
+                      addFavorite={addFavorite}
                     />
                   </Col>
                 )}
@@ -151,6 +192,8 @@ export const MainView = () => {
                       user={user}
                       films={films}
                       handleUpdateUser={updateUser}
+                      removeFavorite={removeFavorite}
+                      addFavorite={addFavorite}
                     />
                   </Col>
                 )}
