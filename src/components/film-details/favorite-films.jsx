@@ -1,14 +1,33 @@
-import { Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import ToggleButton from "react-bootstrap/ToggleButton";
 
 export const FavoriteFilms = ({
   user,
   storedToken,
-  handleUpdateUser,
   filmId,
+  handleUpdateUser,
 }) => {
   console.log("USER:", user);
   console.log("TOKEN:", storedToken);
+  console.log("FILMID:", filmId);
   console.log("UPDATEUSER:", handleUpdateUser);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const isFilmFavorite = user.favoriteFilms.includes(filmId);
+    setIsFavorite(isFilmFavorite);
+  }, [user.favoriteFilms, filmId]);
+
+  const handleFavoriteToggle = () => {
+    setIsFavorite((prevState) => !prevState);
+
+    if (isFavorite) {
+      removeFavorite();
+    } else {
+      addFavorite();
+    }
+  };
 
   const removeFavorite = () => {
     fetch(
@@ -22,6 +41,7 @@ export const FavoriteFilms = ({
     )
       .then((response) => {
         if (response.ok) {
+          handleUpdateUser(user);
           console.log("Film successfully removed from favorites.");
         }
       })
@@ -40,8 +60,8 @@ export const FavoriteFilms = ({
     )
       .then((response) => {
         if (response.ok) {
+          handleUpdateUser(user);
           console.log("Film successfully added to favorites.");
-          (user) => handleUpdateUser(user);
           console.log(user);
         }
       })
@@ -50,8 +70,16 @@ export const FavoriteFilms = ({
 
   return (
     <>
-      <Button onClick={addFavorite}>Add Favorite</Button>
-      <Button onClick={removeFavorite}>Remove Favorite</Button>
+      <ButtonGroup toggle>
+        <ToggleButton
+          type="checkbox"
+          variant={isFavorite ? "danger" : "outline-danger"}
+          checked={isFavorite}
+          onChange={handleFavoriteToggle}
+        >
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        </ToggleButton>
+      </ButtonGroup>
     </>
   );
 };
