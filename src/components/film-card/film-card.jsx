@@ -1,10 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FavoriteFilms } from "../film-details/favorite-films";
 
-export const FilmCard = ({ films }) => {
-  const film = films.find((f) => f.id);
-
+export const FilmCard = ({ film }) => {
   return (
     <Card className="h-100">
       <Card.Img src={film.image}></Card.Img>
@@ -14,12 +11,6 @@ export const FilmCard = ({ films }) => {
         <Link to={`/films/${encodeURI(film.id)}`}>
           <Button>More detail</Button>
         </Link>
-        <FavoriteFilms
-          user={user}
-          storedToken={storedToken}
-          handleUpdateUser={handleUpdateUser}
-          filmId={film.id}
-        />
       </Card.Body>
     </Card>
   );

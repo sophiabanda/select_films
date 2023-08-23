@@ -9,7 +9,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import { UpdateView } from "../profile-view/update-view";
-import { FavoriteFilms } from "../film-details/favorite-films";
 
 export const MainView = () => {
   //state variables:
