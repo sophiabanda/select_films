@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
+import { FavoriteFilms } from "./favorite-films";
 
 export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
   const { filmId } = useParams();
@@ -42,6 +43,12 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
       <Link to="/">
         <Button className="back-button">Back</Button>
       </Link>
+      <FavoriteFilms
+        user={user}
+        films={films}
+        storedToken={storedToken}
+        handleUpdateUser={handleUpdateUser}
+      />
     </div>
   );
 };
