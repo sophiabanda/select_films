@@ -1,6 +1,5 @@
 import { Button, ButtonGroup, ToggleButton, Col, Row } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
 
 export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
   const { filmId } = useParams();
@@ -77,7 +76,6 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
         <Link to="/">
           <Button className="back-button">Back</Button>
         </Link>
-
         <Button onClick={addFavorite}>Add Favorite</Button>
         <Button onClick={removeFavorite}>Remove Favorite</Button>
       </Col>

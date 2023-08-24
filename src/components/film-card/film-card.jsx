@@ -1,16 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FavoriteButton } from "./favorite-button";
 
-export const FilmCard = ({
-  film,
-  user,
-  storedToken,
-  handleUpdateUser,
-  filmId,
-}) => {
-  const { id, title, director, genre, image, summary, favorite } = film;
-
+export const FilmCard = ({ film }) => {
   return (
     <Card className="h-100">
       <Card.Img src={film.image}></Card.Img>
