@@ -1,14 +1,13 @@
-import { Button } from "react-bootstrap";
+import { Button, ButtonGroup, ToggleButton } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 
-export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
+export const FilmDetails = ({ films, handleFavoriteToggle, user }) => {
   const { filmId } = useParams();
   const film = films.find((f) => f.id === filmId);
-
-  console.log("USER:", user);
-  console.log("TOKEN:", storedToken);
-  console.log("FILMID:", filmId);
-  console.log("UPDATEUSER:", handleUpdateUser);
+  const isFavorite = films.filter((m) => user.Favorites.includes(m._id));
+  const handleFavoriteClick = () => {
+    handleFavoriteToggle(filmId);
+  };
 
   return (
     <div className="text">
@@ -42,6 +41,16 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
       <Link to="/">
         <Button className="back-button">Back</Button>
       </Link>
+      <ButtonGroup toggle>
+        <ToggleButton
+          type="checkbox"
+          variant={isFavorite ? "danger" : "outline-danger"}
+          checked={isFavorite}
+          onChange={handleFavoriteClick}
+        >
+          {isFavorite ? "Remove Favorite" : "Add Favorite"}
+        </ToggleButton>
+      </ButtonGroup>
     </div>
   );
 };

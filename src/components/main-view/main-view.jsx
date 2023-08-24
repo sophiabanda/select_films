@@ -9,7 +9,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import { UpdateView } from "../profile-view/update-view";
-import { FavoriteButton } from "../film-card/favorite-button";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -17,7 +16,6 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const onLoggedOut = () => {
     setUser(null),
@@ -59,45 +57,30 @@ export const MainView = () => {
       });
   }, [token]);
 
-  useEffect(() => {
-    const removeFavorite = () => {
-      fetch(
-        `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        }
-      )
-        .then((response) => {
-          if (response.ok) {
-            console.log("Film successfully removed from favorites.");
-          }
-        })
-        .catch((error) => console.log("Film was not deleted.", error));
-    };
+  const handleFavoriteToggle = (id) => {
+    console.log(id);
+    setIsFavorite((prevState) => !prevState);
+    const url = `https://sophia-films.herokuapp.com/users/${user._id}/films/${id}`;
+    const method = isFavorite ? "DELETE" : "POST";
 
-    const addFavorite = () => {
-      fetch(
-        `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
+    fetch(url, {
+      method: method,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log(
+            `Film successfully ${
+              isFavorite ? "removed from" : "added to"
+            } favorites.`
+          );
+          handleUpdateUser(user);
         }
-      )
-        .then((response) => {
-          if (response.ok) {
-            console.log("Film successfully added to favorites.");
-            (user) => handleUpdateUser(user);
-            console.log(user);
-          }
-        })
-        .catch((error) => console.log("Film was not added.", error));
-    };
-  }, [user.Favorites, filmId]);
+      })
+      .catch((error) => console.log("Error:", error));
+  };
 
   return (
     <BrowserRouter>
@@ -148,8 +131,6 @@ export const MainView = () => {
                       storedToken={storedToken}
                       films={films}
                       user={user}
-                      removeFavorite={removeFavorite}
-                      addFavorite={addFavorite}
                     />
                   </Col>
                 )}
@@ -169,8 +150,6 @@ export const MainView = () => {
                       loggedInUser={user}
                       storedToken={storedToken}
                       onLoggedOut={onLoggedOut}
-                      removeFavorite={removeFavorite}
-                      addFavorite={addFavorite}
                     />
                   </Col>
                 )}
@@ -191,9 +170,7 @@ export const MainView = () => {
                       storedToken={storedToken}
                       user={user}
                       films={films}
-                      handleUpdateUser={updateUser}
-                      removeFavorite={removeFavorite}
-                      addFavorite={addFavorite}
+                      handleFavoriteToggle={handleFavoriteToggle}
                     />
                   </Col>
                 )}
@@ -216,9 +193,8 @@ export const MainView = () => {
                           film={film}
                           user={user}
                           storedToken={storedToken}
-                          handleUpdateUser={updateUser}
+                          handleFavoriteToggle={handleFavoriteToggle}
                         />
-                        <FavoriteButton film={film} user={user} />
                       </Col>
                     ))}
                   </>
