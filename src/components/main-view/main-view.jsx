@@ -57,31 +57,6 @@ export const MainView = () => {
       });
   }, [token]);
 
-  const handleFavoriteToggle = (id) => {
-    console.log(id);
-    setIsFavorite((prevState) => !prevState);
-    const url = `https://sophia-films.herokuapp.com/users/${user._id}/films/${id}`;
-    const method = isFavorite ? "DELETE" : "POST";
-
-    fetch(url, {
-      method: method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log(
-            `Film successfully ${
-              isFavorite ? "removed from" : "added to"
-            } favorites.`
-          );
-          handleUpdateUser(user);
-        }
-      })
-      .catch((error) => console.log("Error:", error));
-  };
-
   return (
     <BrowserRouter>
       <NavigationBar onLoggedOut={onLoggedOut} user={user}></NavigationBar>
@@ -170,7 +145,7 @@ export const MainView = () => {
                       storedToken={storedToken}
                       user={user}
                       films={films}
-                      handleFavoriteToggle={handleFavoriteToggle}
+                      handleUpdateUser={updateUser}
                     />
                   </Col>
                 )}
@@ -193,7 +168,6 @@ export const MainView = () => {
                           film={film}
                           user={user}
                           storedToken={storedToken}
-                          handleFavoriteToggle={handleFavoriteToggle}
                         />
                       </Col>
                     ))}

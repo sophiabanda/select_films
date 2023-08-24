@@ -1,8 +1,10 @@
 import { Button, Link, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { DisplayFavorites } from "./display-favorites";
 
 export const ProfileView = ({ user, films }) => {
+  console.log(user);
+  const showFavorite = films.filter((f) => user.Favorites.includes(f.id));
+
   return (
     <>
       <Row>
@@ -22,8 +24,12 @@ export const ProfileView = ({ user, films }) => {
           </Link>
         </Col>
       </Row>
-      <Row>
-        <DisplayFavorites user={user} films={films} />
+      <Row className="favorites">
+        {showFavorite.map((film) => (
+          <Col key={film.id}>
+            <FilmCard film={film} />
+          </Col>
+        ))}
       </Row>
     </>
   );

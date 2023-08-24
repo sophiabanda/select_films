@@ -10,6 +10,7 @@ export const FilmCard = ({
   filmId,
 }) => {
   const { id, title, director, genre, image, summary, favorite } = film;
+
   return (
     <Card className="h-100">
       <Card.Img src={film.image}></Card.Img>
@@ -17,7 +18,6 @@ export const FilmCard = ({
         <Card.Title>{film.title}</Card.Title>
         <Link to={`/films/${encodeURI(film.id)}`}>
           <Button>More detail</Button>
-          <FavoriteButton film={film} user={user} filmId={id} />
         </Link>
       </Card.Body>
     </Card>
