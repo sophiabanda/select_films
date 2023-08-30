@@ -1,15 +1,12 @@
 import { Button } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { FavoriteFilms } from "./favorite-films";
+import { useNavigate } from "react-router-dom";
 
 export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
   const { filmId } = useParams();
   const film = films.find((f) => f.id === filmId);
-
-  console.log("USER:", user);
-  console.log("TOKEN:", storedToken);
-  console.log("FILMID:", filmId);
-  console.log("UPDATEUSER:", handleUpdateUser);
+  const navigate = useNavigate();
 
   return (
     <div className="text">
@@ -40,9 +37,9 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
         <span className="text">Summary: </span>
         <span>{film.summary}</span>
       </div>
-      <Link to="/">
-        <Button className="back-button">Back</Button>
-      </Link>
+      <Button className="back-button" onClick={() => navigate(-1)}>
+        Back
+      </Button>
       <FavoriteFilms
         user={user}
         films={films}

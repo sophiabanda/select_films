@@ -2,7 +2,12 @@ import React from "react"; // Import React
 import { Col, Row } from "react-bootstrap";
 import { FilmCard } from "../film-card/film-card";
 
-export const DisplayFavorites = ({ films, user }) => {
+export const DisplayFavorites = ({
+  films,
+  user,
+  storedToken,
+  handleUpdateUser,
+}) => {
   console.log("USER:", user);
   const showFavorite = films.filter((f) => user.Favorites?.includes(f.id));
 
@@ -17,7 +22,12 @@ export const DisplayFavorites = ({ films, user }) => {
       <Row className="favorites">
         {showFavorite.map((film) => (
           <Col key={film.id}>
-            <FilmCard film={film} />
+            <FilmCard
+              film={film}
+              user={user}
+              storedToken={storedToken}
+              handleUpdateUser={handleUpdateUser}
+            />
           </Col>
         ))}
       </Row>

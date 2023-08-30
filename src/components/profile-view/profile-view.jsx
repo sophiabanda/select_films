@@ -2,7 +2,7 @@ import { Button, Link, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { DisplayFavorites } from "./display-favorites";
 
-export const ProfileView = ({ user, films }) => {
+export const ProfileView = ({ user, films, storedToken, handleUpdateUser }) => {
   return (
     <>
       <Row>
@@ -23,7 +23,12 @@ export const ProfileView = ({ user, films }) => {
         </Col>
       </Row>
       <Row>
-        <DisplayFavorites user={user} films={films} />
+        <DisplayFavorites
+          user={user}
+          films={films}
+          handleUpdateUser={handleUpdateUser}
+          storedToken={storedToken}
+        />
       </Row>
     </>
   );

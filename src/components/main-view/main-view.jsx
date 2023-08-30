@@ -27,12 +27,13 @@ export const MainView = () => {
 
   const updateUser = (newUser) => {
     localStorage.setItem("user", JSON.stringify(newUser));
+    console.log("update user", newUser);
     setUser(newUser);
   };
 
-  console.log("USER:", user);
-  console.log("TOKEN:", storedToken);
-  console.log("UPDATEUSER:", updateUser);
+  // console.log("USER:", user);
+  // console.log("TOKEN:", storedToken);
+  // console.log("UPDATEUSER:", updateUser);
 
   useEffect(() => {
     if (!token) {
@@ -111,6 +112,7 @@ export const MainView = () => {
                       storedToken={storedToken}
                       films={films}
                       user={user}
+                      handleUpdateUser={updateUser}
                     />
                   </Col>
                 )}

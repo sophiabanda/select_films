@@ -6,10 +6,7 @@ export const FavoriteFilms = ({
   filmId,
   handleUpdateUser,
 }) => {
-  console.log("USER:", user);
-  console.log("TOKEN:", storedToken);
-  console.log("FILMID:", filmId);
-  console.log("UPDATEUSER:", handleUpdateUser);
+  const isFavorite = user.Favorites.includes(filmId);
   //   const [isFavorite, setIsFavorite] = useState(false);
 
   //   useEffect(() => {
@@ -27,23 +24,24 @@ export const FavoriteFilms = ({
   //     }
   //   };
 
-  const removeFavorite = () => {
-    fetch(
-      `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
-        },
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          handleUpdateUser(user);
-          console.log("Film successfully removed from favorites.");
+  const removeFavorite = async () => {
+    try {
+      const res = await fetch(
+        `https://sophia-films.herokuapp.com/users/${user._id}/films/${filmId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
         }
-      })
-      .catch((error) => console.log("Film was not deleted.", error));
+      );
+      if (res.ok) {
+        const newUser = await res.json();
+        handleUpdateUser(newUser);
+      }
+    } catch (error) {
+      console.log("Film was not deleted.", error);
+    }
   };
 
   const addFavorite = () => {
@@ -58,9 +56,12 @@ export const FavoriteFilms = ({
     )
       .then((response) => {
         if (response.ok) {
-          handleUpdateUser(user);
-          console.log("Film successfully added to favorites.");
-          console.log(user);
+          response
+            .json()
+            .then((newUser) => {
+              handleUpdateUser(newUser);
+            })
+            .catch((error) => console.log("Film was not added.", error));
         }
       })
       .catch((error) => console.log("Film was not added.", error));
@@ -68,18 +69,11 @@ export const FavoriteFilms = ({
 
   return (
     <>
-      <Button onClick={addFavorite}> Add Favorite</Button>
-      <Button onClick={removeFavorite}>Remove Favorite</Button>
-      {/* <ButtonGroup toggle>
-        <ToggleButton
-          type="checkbox"
-          variant={isFavorite ? "danger" : "outline-danger"}
-          checked={isFavorite}
-          onChange={handleFavoriteToggle}
-        >
-          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-        </ToggleButton>
-      </ButtonGroup> */}
+      {isFavorite ? (
+        <Button onClick={removeFavorite}>Unfavorite</Button>
+      ) : (
+        <Button onClick={addFavorite}>Favorite</Button>
+      )}
     </>
   );
 };

@@ -11,7 +11,7 @@ export const UpdateView = ({
   const [username, setUsername] = useState(loggedInUser.Name);
   const [email, setEmail] = useState(loggedInUser.Email);
   const [password, setPassword] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [birthday, setBirthday] = useState(loggedInUser.Birthday);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -64,6 +64,17 @@ export const UpdateView = ({
         <Modal.Body>
           <Form>
             <Form.Group>
+              <Form.Label className="modal-label">
+                Enter current password to save changes:
+              </Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group>
               <Form.Label className="modal-label">Username:</Form.Label>
               <Form.Control
                 type="text"
@@ -77,14 +88,6 @@ export const UpdateView = ({
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="modal-label">Password:</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
               ></Form.Control>
             </Form.Group>
             <Form.Group>
