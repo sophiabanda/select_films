@@ -4,7 +4,7 @@ import { FavoriteFilms } from "../film-details/favorite-films";
 
 export const FilmCard = ({ film, user, storedToken, handleUpdateUser }) => {
   return (
-    <Card className="h-100">
+    <Card className="h-100, card-background">
       <Card.Img src={film.image}></Card.Img>
       <Card.Body>
         <Card.Title>{film.title}</Card.Title>

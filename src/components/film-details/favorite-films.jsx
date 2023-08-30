@@ -1,4 +1,6 @@
 import { Button } from "react-bootstrap";
+import { useState } from "react";
+import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 
 export const FavoriteFilms = ({
   user,
@@ -7,23 +9,6 @@ export const FavoriteFilms = ({
   handleUpdateUser,
 }) => {
   const isFavorite = user.Favorites.includes(filmId);
-  //   const [isFavorite, setIsFavorite] = useState(false);
-
-  //   useEffect(() => {
-  //     const isFilmFavorite = user.favoriteFilms.includes(filmId);
-  //     setIsFavorite(isFilmFavorite);
-  //   }, [user.favoriteFilms, filmId]);
-
-  //   const handleFavoriteToggle = () => {
-  //     setIsFavorite((prevState) => !prevState);
-
-  //     if (isFavorite) {
-  //       removeFavorite();
-  //     } else {
-  //       addFavorite();
-  //     }
-  //   };
-
   const removeFavorite = async () => {
     try {
       const res = await fetch(
@@ -70,9 +55,17 @@ export const FavoriteFilms = ({
   return (
     <>
       {isFavorite ? (
-        <Button onClick={removeFavorite}>Unfavorite</Button>
+        <Button className="favorite-button" onClick={removeFavorite}>
+          &#128525;
+        </Button>
       ) : (
-        <Button onClick={addFavorite}>Favorite</Button>
+        <Button
+          className="favorite-button"
+          variant="outline-primary"
+          onClick={addFavorite}
+        >
+          &#9825;
+        </Button>
       )}
     </>
   );

@@ -1,17 +1,37 @@
-$primary: #eb455f;
+$primary: #282c73;
 $main-black: #262626;
-$main-red: #eb455f;
+$main-red: #91978d;
 $main-white: #fcffe7;
 $main-accent-black: #bad7e9;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
 body {
-  background-color: $main-black;
+  background-color: #450920;
 }
 
 .card-background {
-  background-color: #fcffe7;
+  background-color: #b98eb1;
+}
+
+.card-img {
+  border-radius: 0;
+}
+
+.card {
+  border-color: white;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 12px;
+  color: $primary;
+}
+
+.navbar {
+  background-color: #282c73;
+  margin-bottom: 20px;
+  border-color: white;
+  border-radius: 10px;
+  border-style: solid;
 }
 
 .text {
@@ -36,4 +56,8 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.favorite-button {
+  margin: 20px;
 }
