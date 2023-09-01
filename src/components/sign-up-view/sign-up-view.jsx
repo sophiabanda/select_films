@@ -7,7 +7,7 @@ export const SignUpView = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-  const [favorites, setFavorites] = useState("");
+  // const [favorites, setFavorites] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -18,7 +18,7 @@ export const SignUpView = () => {
       Password: password,
       Email: email,
       Birthday: birthday,
-      Favorites: favorites,
+      // Favorites: favorites,
     };
 
     fetch("https://sophia-films.herokuapp.com/users", {

@@ -8,7 +8,7 @@ export const FavoriteFilms = ({
   filmId,
   handleUpdateUser,
 }) => {
-  const isFavorite = user.Favorites.includes(filmId);
+  const isFavorite = user.Favorites?.includes(filmId);
   const removeFavorite = async () => {
     try {
       const res = await fetch(
