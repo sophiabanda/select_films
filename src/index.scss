@@ -14,8 +14,22 @@ body {
   background-color: #b98eb1;
 }
 
+.film-details {
+  border-color: white;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 12px;
+  background-color: $main-red;
+  color: white;
+  padding: 15px;
+}
+
 .card-img {
   border-radius: 0;
+}
+
+.card-title {
+  color: white;
 }
 
 .card {
@@ -36,11 +50,12 @@ body {
 }
 
 .text {
-  color: white;
+  color: $primary;
 }
 
 .detail-poster {
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .form-label {

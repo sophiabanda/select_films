@@ -9,7 +9,7 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="text">
+    <div className="film-details">
       <div>
         <img
           alt="Original film poster for film"
@@ -18,8 +18,8 @@ export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
         />
       </div>
       <div>
-        <span className="text">Title: </span>
-        <span>{film.title}</span>
+        <h2 className="text">{film.title} </h2>
+        <h2></h2>
       </div>
       <div>
         <span className="text">Director: </span>

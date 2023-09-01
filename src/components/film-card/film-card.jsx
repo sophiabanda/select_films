@@ -7,7 +7,7 @@ export const FilmCard = ({ film, user, storedToken, handleUpdateUser }) => {
     <Card className="h-100, card-background">
       <Card.Img src={film.image}></Card.Img>
       <Card.Body>
-        <Card.Title>{film.title}</Card.Title>
+        {/* <Card.Title>{film.title}</Card.Title> */}
         {/* <Card.Text>{film.summary}</Card.Text> */}
         <Link to={`/films/${encodeURI(film.id)}`}>
           <Button>More detail</Button>
