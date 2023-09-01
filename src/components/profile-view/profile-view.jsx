@@ -6,21 +6,18 @@ export const ProfileView = ({ user, films, storedToken, handleUpdateUser }) => {
   return (
     <>
       <Row>
-        <Col>
-          <h1 className="text">Username: {user.Name}</h1>
-          <h2 className="text">Email: {user.Email}</h2>
-          <h2 className="text">
-            Birthday:{" "}
-            {new Date(user.Birthday).toLocaleDateString(undefined, {
-              timeZone: "UTC",
-            })}
-          </h2>
-        </Col>
-        <Col>
-          <Link to={`/user/${encodeURI(user._id)}`}>
-            <Button>Update user information</Button>
-          </Link>
-        </Col>
+        <span className="user-info">
+          <Col>
+            <h1 className="text">Username: {user.Name}</h1>
+            <h2 className="text">Email: {user.Email}</h2>
+            <h2 className="text">
+              Birthday:{" "}
+              {new Date(user.Birthday).toLocaleDateString(undefined, {
+                timeZone: "UTC",
+              })}
+            </h2>
+          </Col>
+        </span>
       </Row>
       <Row>
         <DisplayFavorites
@@ -29,6 +26,11 @@ export const ProfileView = ({ user, films, storedToken, handleUpdateUser }) => {
           handleUpdateUser={handleUpdateUser}
           storedToken={storedToken}
         />
+      </Row>
+      <Row>
+        <Link to={`/user/${encodeURI(user._id)}`}>
+          <Button>Update user information</Button>
+        </Link>
       </Row>
     </>
   );

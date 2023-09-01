@@ -39,7 +39,7 @@ export const UpdateView = ({
       .then(handleClose);
   };
   return (
-    <Row>
+    <Row className="justify-content-md-center">
       <Col>
         <Button variant="primary" onClick={handleShow}>
           Update user information

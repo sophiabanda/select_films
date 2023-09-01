@@ -19,9 +19,9 @@ export const DisplayFavorites = ({
     );
   } else {
     return (
-      <Row className="favorites">
+      <Row className="favorites, justify-content-md-center">
         {showFavorite.map((film) => (
-          <Col key={film.id}>
+          <Col xs={6} md={4} key={film.id}>
             <FilmCard
               film={film}
               user={user}

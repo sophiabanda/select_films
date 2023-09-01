@@ -5,7 +5,7 @@ import "./index.scss";
 
 const SelectFilms = () => {
   return (
-    <Container>
+    <Container fluid>
       <MainView />
     </Container>
   );
