@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const LogInView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -27,11 +29,11 @@ export const LogInView = ({ onLoggedIn }) => {
           localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
         } else {
-          alert("No such user.");
+          toast.error("Hmm, that's not quite right. Please try again.");
         }
       })
       .catch((error) => {
-        alert("Something went wrong.", error);
+        toast.error("Something went wrong.", error);
       });
   };
   return (

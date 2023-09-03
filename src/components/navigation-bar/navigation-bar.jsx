@@ -20,9 +20,11 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                   Profile
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-                {/* <Navbar.Text className="font-italic">
-                  Welcome, {user.Name}!
-                </Navbar.Text> */}
+                <Navbar.Text>
+                  <small>
+                    <i>Logged in as {user.Name}</i>
+                  </small>
+                </Navbar.Text>
               </>
             ) : (
               <>

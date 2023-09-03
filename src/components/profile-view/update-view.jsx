@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Form, Button, Modal, Col, Row } from "react-bootstrap";
 import { DeleteUser } from "./delete-user";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const UpdateView = ({
   loggedInUser,
@@ -8,13 +11,17 @@ export const UpdateView = ({
   storedToken,
   onLoggedOut,
 }) => {
+  const birthdayValue = new Date(loggedInUser.Birthday)
+    .toISOString()
+    .split("T")[0];
   const [username, setUsername] = useState(loggedInUser.Name);
   const [email, setEmail] = useState(loggedInUser.Email);
   const [password, setPassword] = useState("");
-  const [birthday, setBirthday] = useState(loggedInUser.Birthday);
+  const [birthday, setBirthday] = useState(birthdayValue);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,8 +43,11 @@ export const UpdateView = ({
     })
       .then((response) => response.json())
       .then((user) => handleUpdateUser(user))
-      .then(handleClose);
+      .then(toast.success(`${loggedInUser.Name} updated successfully!`))
+      .then(handleClose)
+      .then(navigate("/profile"));
   };
+
   return (
     <Row className="justify-content-md-center">
       <Col>

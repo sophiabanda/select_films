@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SignUpView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-  // const [favorites, setFavorites] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -29,7 +30,7 @@ export const SignUpView = () => {
       },
     }).then((response) => {
       if (response.ok) {
-        alert("Signup successful!");
+        toast.success("Signup successful! Please sign in :)");
         navigate("/login");
       } else {
         alert("Signup failed.");

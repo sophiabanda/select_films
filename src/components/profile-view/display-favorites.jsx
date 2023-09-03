@@ -8,7 +8,6 @@ export const DisplayFavorites = ({
   storedToken,
   handleUpdateUser,
 }) => {
-  console.log("USER:", user);
   const showFavorite = films.filter((f) => user.Favorites?.includes(f.id));
 
   if (showFavorite.length === 0) {
@@ -23,7 +22,7 @@ export const DisplayFavorites = ({
         className="favorites"
         style={{
           display: "grid",
-          "grid-template-columns": "repeat(auto-fit, minmax(12rem, 1fr) )",
+          gridTemplateColumns: `repeat(auto-fit, minmax(12rem, 1fr) )`,
           gap: "2rem",
         }}
       >

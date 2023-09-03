@@ -27,11 +27,11 @@ export const ProfileView = ({ user, films, storedToken, handleUpdateUser }) => {
           storedToken={storedToken}
         />
       </Row>
-      <Row>
+      <div className="update-button">
         <Link to={`/user/${encodeURI(user._id)}`}>
           <Button>Update user information</Button>
         </Link>
-      </Row>
+      </div>
     </>
   );
 };
