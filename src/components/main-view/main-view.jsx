@@ -168,18 +168,24 @@ export const MainView = () => {
                 ) : films.length === 0 ? (
                   <Col>Sadly, there are no films to see here.</Col>
                 ) : (
-                  <>
+                  <div
+                    style={{
+                      display: "grid",
+                      "grid-template-columns":
+                        "repeat(auto-fit, minmax(250px, 1fr) )",
+                      gap: "2rem",
+                    }}
+                  >
                     {films.map((film) => (
-                      <Col className="mb-4" key={film.id} md={3}>
-                        <FilmCard
-                          film={film}
-                          user={user}
-                          storedToken={storedToken}
-                          handleUpdateUser={updateUser}
-                        />
-                      </Col>
+                      <FilmCard
+                        key={film.id}
+                        film={film}
+                        user={user}
+                        storedToken={storedToken}
+                        handleUpdateUser={updateUser}
+                      />
                     ))}
-                  </>
+                  </div>
                 )}
               </>
             }
