@@ -5,12 +5,11 @@ import { FavoriteFilms } from "../film-details/favorite-films";
 export const FilmCard = ({ film, user, storedToken, handleUpdateUser }) => {
   return (
     <Card className="h-100, card-background">
-      <Card.Img src={film.image}></Card.Img>
       <Card.Body>
         {/* <Card.Title>{film.title}</Card.Title> */}
         {/* <Card.Text>{film.summary}</Card.Text> */}
         <Link to={`/films/${encodeURI(film.id)}`}>
-          <Button>More detail</Button>
+          <Card.Img src={film.image}></Card.Img>
         </Link>
         <FavoriteFilms
           user={user}
@@ -27,3 +26,20 @@ export const FilmCard = ({ film, user, storedToken, handleUpdateUser }) => {
 //be used in components, only in regular divs.
 
 //checkbox, radio button
+// export const FilmCard = ({ film, user, storedToken, handleUpdateUser }) => {
+//   return (
+//     <Link to={`/films/${encodeURI(film.id)}`}>
+//       <Card className="h-100 card-background" style={{ position: "relative" }}>
+//         <Card.Img src={film.image} className="h-100" />
+//         <div style={{ position: "absolute", right: "0", bottom: "0" }}>
+//           <FavoriteFilms
+//             user={user}
+//             handleUpdateUser={handleUpdateUser}
+//             storedToken={storedToken}
+//             filmId={film.id}
+//           />
+//         </div>
+//       </Card>
+//     </Link>
+//   );
+// };
