@@ -74,14 +74,12 @@ export const UpdateView = ({
         <Modal.Body>
           <Form>
             <Form.Group>
-              <Form.Label className="modal-label">
-                Enter current password to save changes:
-              </Form.Label>
+              <Form.Label className="modal-label">Password:</Form.Label>
               <Form.Control
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
+                placeholder="Enter current password to make and save changes"
               ></Form.Control>
             </Form.Group>
             <Form.Group>
