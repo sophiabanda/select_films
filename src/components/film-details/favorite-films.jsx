@@ -56,7 +56,7 @@ export const FavoriteFilms = ({
     <>
       {isFavorite ? (
         <Button className="favorite-button" onClick={removeFavorite}>
-          &#128525;
+          &#x2B50;
         </Button>
       ) : (
         <Button
@@ -64,7 +64,7 @@ export const FavoriteFilms = ({
           variant="outline-primary"
           onClick={addFavorite}
         >
-          &#9825;
+          &#x2606;
         </Button>
       )}
     </>

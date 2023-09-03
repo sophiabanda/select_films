@@ -172,7 +172,7 @@ export const MainView = () => {
                     style={{
                       display: "grid",
                       "grid-template-columns":
-                        "repeat(auto-fit, minmax(250px, 1fr) )",
+                        "repeat(auto-fit, minmax(12rem, 1fr) )",
                       gap: "2rem",
                     }}
                   >

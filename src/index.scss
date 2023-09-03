@@ -1,6 +1,6 @@
 $primary: #282c73;
 $main-black: #262626;
-$main-red: #91978d;
+$main-sage: #91978d;
 $main-white: #fcffe7;
 $main-accent-black: #bad7e9;
 
@@ -8,10 +8,11 @@ $main-accent-black: #bad7e9;
 
 body {
   background-color: #450920;
+  color: white;
 }
 
 .card-background {
-  background-color: #b98eb1;
+  background-color: $main-sage;
 }
 
 .film-details {
@@ -19,17 +20,12 @@ body {
   border-radius: 10px;
   border-style: solid;
   border-width: 12px;
-  background-color: $main-red;
-  color: white;
+  background-color: $main-sage;
   padding: 15px;
 }
 
 .card-img {
   border-radius: 0;
-}
-
-.card-title {
-  color: white;
 }
 
 .card {
@@ -66,7 +62,7 @@ body {
 }
 
 .profile-text {
-  color: $main-red;
+  color: $main-sage;
 }
 
 a {
@@ -74,11 +70,12 @@ a {
 }
 
 .favorite-button {
-  margin: 20px;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .user-info {
-  background-color: #b98eb1;
+  background-color: $main-sage;
   margin-bottom: 10px;
   border-color: white;
   border-radius: 10px;

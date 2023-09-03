@@ -14,23 +14,29 @@ export const DisplayFavorites = ({
   if (showFavorite.length === 0) {
     return (
       <Col>
-        <h2>Here belong your favorite films.</h2>
+        <h2>Here belong your favorite films!</h2>
       </Col>
     );
   } else {
     return (
-      <Row className="favorites, justify-content-md-center">
+      <div
+        className="favorites"
+        style={{
+          display: "grid",
+          "grid-template-columns": "repeat(auto-fit, minmax(12rem, 1fr) )",
+          gap: "2rem",
+        }}
+      >
         {showFavorite.map((film) => (
-          <Col xs={6} md={4} key={film.id}>
-            <FilmCard
-              film={film}
-              user={user}
-              storedToken={storedToken}
-              handleUpdateUser={handleUpdateUser}
-            />
-          </Col>
+          <FilmCard
+            key={film.id}
+            film={film}
+            user={user}
+            storedToken={storedToken}
+            handleUpdateUser={handleUpdateUser}
+          />
         ))}
-      </Row>
+      </div>
     );
   }
 };
