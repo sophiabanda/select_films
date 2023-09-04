@@ -49,13 +49,11 @@ export const UpdateView = ({
   };
 
   return (
-    <Row className="justify-content-md-center">
+    <Row>
       <Col>
         <Button variant="primary" onClick={handleShow}>
           Update user information
         </Button>
-      </Col>
-      <Col>
         <DeleteUser
           onLoggedOut={onLoggedOut}
           loggedInUser={loggedInUser}

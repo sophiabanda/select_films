@@ -16,6 +16,11 @@ export const ProfileView = ({ user, films, storedToken, handleUpdateUser }) => {
                 timeZone: "UTC",
               })}
             </h2>
+            <div className="update-button">
+              <Link to={`/user/${encodeURI(user._id)}`}>
+                <Button>Update user information</Button>
+              </Link>
+            </div>
           </Col>
         </span>
       </Row>
@@ -27,11 +32,6 @@ export const ProfileView = ({ user, films, storedToken, handleUpdateUser }) => {
           storedToken={storedToken}
         />
       </Row>
-      <div className="update-button">
-        <Link to={`/user/${encodeURI(user._id)}`}>
-          <Button>Update user information</Button>
-        </Link>
-      </div>
     </>
   );
 };
