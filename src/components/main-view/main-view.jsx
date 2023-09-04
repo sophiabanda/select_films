@@ -5,7 +5,10 @@ import { FilmDetails } from "../film-details/film-details";
 import { LogInView } from "../login-view/login-view";
 import { SignUpView } from "../sign-up-view/sign-up-view";
 import { Row, Col } from "react-bootstrap";
-import "./main-view.scss";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
+import { UpdateView } from "../profile-view/update-view";
 
 export const MainView = () => {
   //state variables:
@@ -14,7 +17,18 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
-  const [selectedFilm, setSelectedFilm] = useState(null);
+
+  const onLoggedOut = () => {
+    setUser(null),
+      setToken(null),
+      localStorage.removeItem("user"),
+      localStorage.removeItem("token");
+  };
+
+  const updateUser = (newUser) => {
+    localStorage.setItem("user", JSON.stringify(newUser));
+    setUser(newUser);
+  };
 
   useEffect(() => {
     if (!token) {
@@ -45,55 +59,134 @@ export const MainView = () => {
   }, [token]);
 
   return (
-    <Row className="justify-content-md-center">
-      <button
-        className="logout-button"
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        Logout
-      </button>
-      {!user ? (
-        <Col md={5}>
-          <LogInView
-            onLoggedIn={(user, token) => {
-              setUser(user);
-              setToken(token);
-            }}
-          />
-          or
-          <SignUpView />
-        </Col>
-      ) : selectedFilm ? (
-        <Col md={8}>
-          <FilmDetails
-            film={selectedFilm}
-            onBackClick={() => {
-              setSelectedFilm(null);
-            }}
-          />
-        </Col>
-      ) : films.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {films.map((film) => {
-            return (
-              <Col key={film.id} className="mb-5" md={3}>
-                <FilmCard
-                  film={film}
-                  onFilmClick={(newSelectedFilm) => {
-                    setSelectedFilm(newSelectedFilm);
-                  }}
-                />
-              </Col>
-            );
-          })}
-        </>
-      )}
-    </Row>
+    <BrowserRouter>
+      <NavigationBar onLoggedOut={onLoggedOut} user={user}></NavigationBar>
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignUpView />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LogInView
+                      onLoggedIn={(user, token) => {
+                        setUser(user), setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col>
+                    <ProfileView
+                      storedToken={storedToken}
+                      films={films}
+                      user={user}
+                      handleUpdateUser={updateUser}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/user/:userId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col>
+                    <UpdateView
+                      handleUpdateUser={updateUser}
+                      loggedInUser={user}
+                      storedToken={storedToken}
+                      onLoggedOut={onLoggedOut}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/films/:filmId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : films.length === 0 ? (
+                  <Col>Sadly, there are no films to see here.</Col>
+                ) : (
+                  <Col md={8}>
+                    <FilmDetails
+                      storedToken={storedToken}
+                      user={user}
+                      films={films}
+                      handleUpdateUser={updateUser}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          ></Route>
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : films.length === 0 ? (
+                  <Col>Sadly, there are no films to see here.</Col>
+                ) : (
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns:
+                        "repeat(auto-fit, minmax(12rem, 1fr) )",
+                      gap: "2rem",
+                    }}
+                  >
+                    {films.map((film) => (
+                      <FilmCard
+                        key={film.id}
+                        film={film}
+                        user={user}
+                        storedToken={storedToken}
+                        handleUpdateUser={updateUser}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            }
+          ></Route>
+        </Routes>
+      </Row>
+    </BrowserRouter>
   );
 };

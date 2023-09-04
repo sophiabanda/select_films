@@ -1,19 +1,25 @@
 import { Button } from "react-bootstrap";
-import "./film-details.scss";
+import { useParams, Link } from "react-router-dom";
+import { FavoriteFilms } from "./favorite-films";
+import { useNavigate } from "react-router-dom";
 
-export const FilmDetails = ({ film, onBackClick }) => {
+export const FilmDetails = ({ films, user, storedToken, handleUpdateUser }) => {
+  const { filmId } = useParams();
+  const film = films.find((f) => f.id === filmId);
+  const navigate = useNavigate();
+
   return (
-    <div className="text">
+    <div className="film-details">
       <div>
         <img
           alt="Original film poster for film"
-          className="film-poster"
+          className="detail-poster"
           src={film.image}
         />
       </div>
       <div>
-        <span className="text">Title: </span>
-        <span>{film.title}</span>
+        <h2 className="text">{film.title} </h2>
+        <h2></h2>
       </div>
       <div>
         <span className="text">Director: </span>
@@ -31,7 +37,16 @@ export const FilmDetails = ({ film, onBackClick }) => {
         <span className="text">Summary: </span>
         <span>{film.summary}</span>
       </div>
-      <Button onClick={onBackClick}>Back</Button>
+      <Button className="back-button" onClick={() => navigate(-1)}>
+        Back
+      </Button>
+      <FavoriteFilms
+        user={user}
+        films={films}
+        storedToken={storedToken}
+        handleUpdateUser={handleUpdateUser}
+        filmId={filmId}
+      />
     </div>
   );
 };

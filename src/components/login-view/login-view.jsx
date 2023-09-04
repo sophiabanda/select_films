@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import "./login-view.scss";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const LogInView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -22,24 +23,24 @@ export const LogInView = ({ onLoggedIn }) => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
+      .then(toast.success(`Welcome, ${username}`))
       .then((data) => {
-        console.log("Login response: ", data);
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
           onLoggedIn(data.user, data.token);
         } else {
-          alert("No such user.");
+          toast.error("Hmm, that's not quite right. Please try again.");
         }
       })
-      .catch((e) => {
-        alert("Something went wrong.");
+      .catch((error) => {
+        toast.error("Something went wrong.", error);
       });
   };
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="form-label" onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Label>Username: </Form.Label>
+        <Form.Label className="form-label">Username: </Form.Label>
         <Form.Control
           type="text"
           value={username}

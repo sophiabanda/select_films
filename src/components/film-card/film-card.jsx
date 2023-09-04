@@ -1,14 +1,40 @@
 import { Button, Card } from "react-bootstrap";
-import "./film-card.scss";
+import { Link } from "react-router-dom";
+import { FavoriteFilms } from "../film-details/favorite-films";
 
-export const FilmCard = ({ film, onFilmClick }) => {
+// export const FilmCard = ({ film, user, storedToken, handleUpdateUser }) => {
+//   return (
+//     <Link to={`/films/${encodeURI(film.id)}`}>
+//       <Card className="h-100 card-background" style={{ position: "relative" }}>
+//         <Card.Img src={film.image} className="h-100" />
+//         <div style={{ position: "absolute", right: "0", bottom: "0" }}>
+//           <FavoriteFilms
+//             user={user}
+//             handleUpdateUser={handleUpdateUser}
+//             storedToken={storedToken}
+//             filmId={film.id}
+//           />
+//         </div>
+//       </Card>
+//     </Link>
+//   );
+// };
+
+export const FilmCard = ({ film, user, storedToken, handleUpdateUser }) => {
   return (
-    <Card className="h-100, card-background" onClick={() => onFilmClick(film)}>
-      <Card.Img src={film.image}></Card.Img>
+    <Card className="h-100, card-background">
       <Card.Body>
-        <Card.Title>{film.title}</Card.Title>
+        {/* <Card.Title>{film.title}</Card.Title> */}
         {/* <Card.Text>{film.summary}</Card.Text> */}
-        <Button>More detail</Button>
+        <Link to={`/films/${encodeURI(film.id)}`}>
+          <Card.Img src={film.image}></Card.Img>
+        </Link>
+        <FavoriteFilms
+          user={user}
+          handleUpdateUser={handleUpdateUser}
+          storedToken={storedToken}
+          filmId={film.id}
+        />
       </Card.Body>
     </Card>
   );
@@ -16,3 +42,5 @@ export const FilmCard = ({ film, onFilmClick }) => {
 
 //onClick event listener cannot
 //be used in components, only in regular divs.
+
+//checkbox, radio button

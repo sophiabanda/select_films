@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import "./sign-up-view.scss";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const SignUpView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +19,7 @@ export const SignUpView = () => {
       Password: password,
       Email: email,
       Birthday: birthday,
+      // Favorites: favorites,
     };
 
     fetch("https://sophia-films.herokuapp.com/users", {
@@ -26,7 +30,8 @@ export const SignUpView = () => {
       },
     }).then((response) => {
       if (response.ok) {
-        alert("Signup successful!");
+        toast.success("Signup successful! Please sign in :)");
+        navigate("/login");
       } else {
         alert("Signup failed.");
       }
@@ -34,7 +39,7 @@ export const SignUpView = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="form-label" onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Label>Username:</Form.Label>
         <Form.Control
@@ -66,7 +71,7 @@ export const SignUpView = () => {
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
         ></Form.Control>
-        <Form.Text>(Birthdate is optional)</Form.Text>
+        <Form.Text className="form-label">(Birthdate is optional)</Form.Text>
       </Form.Group>
       <Button type="submit">Submit</Button>
     </Form>
