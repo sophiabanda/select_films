@@ -23,6 +23,7 @@ export const LogInView = ({ onLoggedIn }) => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
+      .then(toast.success(`Welcome, ${username}`))
       .then((data) => {
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
