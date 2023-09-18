@@ -2,4 +2,3 @@
   from = "/*"
   to = "/"
   status = 200
-  node_version = 18.16.0
