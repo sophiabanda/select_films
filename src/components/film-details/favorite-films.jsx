@@ -1,6 +1,4 @@
 import { Button } from "react-bootstrap";
-import { useState } from "react";
-import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 
 export const FavoriteFilms = ({
   user,
