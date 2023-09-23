@@ -4,7 +4,17 @@ Select Films is a modest selection of some of my most favorite films; I expect t
 
 ## To get it up and running
 
-To run locally:
+-To run locally:
 `parcel src/index.html`
-To run build:
+-To run build:
 `parcel build src/index.html --public-url /`
+
+## Dependencies
+
+````"bootstrap": "^5.3.2",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "react-toastify": "^9.1.3"```
+````
