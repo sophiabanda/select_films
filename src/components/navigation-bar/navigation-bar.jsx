@@ -1,7 +1,8 @@
 import { Navbar, Container, Nav, Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, handleSearch }) => {
   return (
     <Navbar sticky="top" data-bs-theme="dark" expand="md">
       <Container>
@@ -20,12 +21,6 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                   Profile
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-                <Form inline>
-                  <Form.Control
-                    type="text"
-                    placeholder="Search films"
-                  ></Form.Control>
-                </Form>
               </>
             ) : (
               <>

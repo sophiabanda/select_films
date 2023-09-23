@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 import { UpdateView } from "../profile-view/update-view";
+import { Form } from "react-bootstrap";
 
 export const MainView = () => {
   //state variables:
@@ -17,6 +18,8 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
+  const [search, setSearch] = useState("");
+  console.log(search);
 
   const onLoggedOut = () => {
     setUser(null),
@@ -163,24 +166,41 @@ export const MainView = () => {
                 ) : films.length === 0 ? (
                   <Col>Sadly, there are no films to see here.</Col>
                 ) : (
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns:
-                        "repeat(auto-fit, minmax(12rem, 1fr) )",
-                      gap: "2rem",
-                    }}
-                  >
-                    {films.map((film) => (
-                      <FilmCard
-                        key={film.id}
-                        film={film}
-                        user={user}
-                        storedToken={storedToken}
-                        handleUpdateUser={updateUser}
-                      />
-                    ))}
-                  </div>
+                  <>
+                    <div className="search-form">
+                      <Form className="search-form" inline>
+                        <Form.Control
+                          type="text"
+                          placeholder="Search films"
+                          onChange={(e) => setSearch(e.target.value)}
+                        ></Form.Control>
+                      </Form>
+                    </div>
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns:
+                          "repeat(auto-fit, minmax(12rem, 1fr) )",
+                        gap: "2rem",
+                      }}
+                    >
+                      {films
+                        .filter((film) => {
+                          return search.toLowerCase() === ""
+                            ? film
+                            : film.title.toLowerCase().includes(search);
+                        })
+                        .map((film) => (
+                          <FilmCard
+                            key={film.id}
+                            film={film}
+                            user={user}
+                            storedToken={storedToken}
+                            handleUpdateUser={updateUser}
+                          />
+                        ))}
+                    </div>
+                  </>
                 )}
               </>
             }
