@@ -18,3 +18,7 @@ Select Films is a modest selection of some of my most favorite films; I expect t
     "react-router-dom": "^6.15.0",
     "react-toastify": "^9.1.3"
 ```
+
+## API Information
+
+https://github.com/sophiabanda/movie_api
