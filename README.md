@@ -19,6 +19,13 @@ Select Films is a modest selection of some of my most favorite films; I expect t
     "react-toastify": "^9.1.3"
 ```
 
+## Dev Dependencies
+
+````"@parcel/transformer-sass": "^2.9.3",
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+    ```
+
 ## API Information
 
 https://github.com/sophiabanda/movie_api
@@ -26,3 +33,4 @@ https://github.com/sophiabanda/movie_api
 ## Currently Hosted Here; Check it out!
 
 https://select-films.netlify.app/login
+````
