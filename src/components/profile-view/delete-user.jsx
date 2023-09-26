@@ -34,7 +34,6 @@ export const DeleteUser = ({ loggedInUser, storedToken, onLoggedOut }) => {
       <Button variant="primary" onClick={handleShow}>
         Delete user account
       </Button>
-
       <Modal
         show={show}
         onHide={handleClose}

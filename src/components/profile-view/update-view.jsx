@@ -49,17 +49,19 @@ export const UpdateView = ({
   };
 
   return (
-    <Row>
-      <Col>
+    <div className="update-buttons">
+      <div className="actual-udpate-buttons">
         <Button variant="primary" onClick={handleShow}>
           Update user information
         </Button>
+      </div>
+      <div className="actual-udpate-buttons">
         <DeleteUser
           onLoggedOut={onLoggedOut}
           loggedInUser={loggedInUser}
           storedToken={storedToken}
         />
-      </Col>
+      </div>
       <Modal
         show={show}
         onHide={handleClose}
@@ -115,6 +117,6 @@ export const UpdateView = ({
           </Button>
         </Modal.Footer>
       </Modal>
-    </Row>
+    </div>
   );
 };
