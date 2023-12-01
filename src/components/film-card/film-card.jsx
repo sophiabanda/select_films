@@ -24,5 +24,3 @@ export const FilmCard = ({ film, user, storedToken, handleUpdateUser }) => {
 
 //onClick event listener cannot
 //be used in components, only in regular divs.
-
-//checkbox, radio button
