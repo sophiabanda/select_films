@@ -1,9 +1,8 @@
-import { Button, Link, Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { DisplayFavorites } from "./display-favorites";
+import { Button, Link, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { DisplayFavorites } from './display-favorites';
 
 export const ProfileView = ({ user, films, storedToken, handleUpdateUser }) => {
-  console.log(user);
   return (
     <>
       <Row>
@@ -12,9 +11,9 @@ export const ProfileView = ({ user, films, storedToken, handleUpdateUser }) => {
             <h1 className="text">Username: {user.Name}</h1>
             <h2 className="text">Email: {user.Email}</h2>
             <h2 className="text">
-              Birthday:{" "}
+              Birthday:{' '}
               {new Date(user.Birthday).toLocaleDateString(undefined, {
-                timeZone: "UTC",
+                timeZone: 'UTC',
               })}
             </h2>
             <div className="update-button">
