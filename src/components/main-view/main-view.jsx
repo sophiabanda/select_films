@@ -1,35 +1,34 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { FilmCard } from "../film-card/film-card";
-import { FilmDetails } from "../film-details/film-details";
-import { LogInView } from "../login-view/login-view";
-import { SignUpView } from "../sign-up-view/sign-up-view";
-import { Row, Col } from "react-bootstrap";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { ProfileView } from "../profile-view/profile-view";
-import { UpdateView } from "../profile-view/update-view";
-import { Form } from "react-bootstrap";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { FilmCard } from '../film-card/film-card';
+import { FilmDetails } from '../film-details/film-details';
+import { LogInView } from '../login-view/login-view';
+import { SignUpView } from '../sign-up-view/sign-up-view';
+import { Row, Col } from 'react-bootstrap';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { NavigationBar } from '../navigation-bar/navigation-bar';
+import { ProfileView } from '../profile-view/profile-view';
+import { UpdateView } from '../profile-view/update-view';
+import { Form } from 'react-bootstrap';
 
 export const MainView = () => {
   //state variables:
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedToken = localStorage.getItem('token');
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [films, setFilms] = useState([]);
-  const [search, setSearch] = useState("");
-  console.log(search);
+  const [search, setSearch] = useState('');
 
   const onLoggedOut = () => {
     setUser(null),
       setToken(null),
-      localStorage.removeItem("user"),
-      localStorage.removeItem("token");
+      localStorage.removeItem('user'),
+      localStorage.removeItem('token');
   };
 
   const updateUser = (newUser) => {
-    localStorage.setItem("user", JSON.stringify(newUser));
+    localStorage.setItem('user', JSON.stringify(newUser));
     setUser(newUser);
   };
 
@@ -178,15 +177,15 @@ export const MainView = () => {
                     </div>
                     <div
                       style={{
-                        display: "grid",
+                        display: 'grid',
                         gridTemplateColumns:
-                          "repeat(auto-fit, minmax(12rem, 1fr) )",
-                        gap: "2rem",
+                          'repeat(auto-fit, minmax(12rem, 1fr) )',
+                        gap: '2rem',
                       }}
                     >
                       {films
                         .filter((film) => {
-                          return search.toLowerCase() === ""
+                          return search.toLowerCase() === ''
                             ? film
                             : film.title.toLowerCase().includes(search);
                         })

@@ -21,7 +21,7 @@ Select Films is a modest selection of some of my most favorite films; I expect t
 
 ## Dev Dependencies
 
-````"@parcel/transformer-sass": "^2.9.3",
+````"@parcel/transformer-sass": "^2.12.0.",
     "parcel": "^2.9.3",
     "process": "^0.11.10"
     ```
